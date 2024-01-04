@@ -1,0 +1,208 @@
+*, *::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Molen';
+    font-style: normal;
+    src: local("Molen Surplus"),
+        url("/fonts/molen/molen-surplus.otf") format("opentype"),
+        url("/fonts/molen/molen-surplus.otf") format("woff");
+}
+
+/* CSS HEX */
+:root {
+    --persian-orange: #CC9361ff;
+    --bistre: #2C1D18ff;
+    --bistre-2: #3A2B22ff;
+    --van-dyke: #39302Aff;
+    --van-dyke-2: #413833ff;
+
+    /* CSS HSL */
+    --persian-orange: hsla(28, 51%, 59%, 1);
+    --bistre: hsla(15, 29%, 13%, 1);
+    --bistre-2: hsla(23, 26%, 18%, 1);
+    --van-dyke: hsla(24, 15%, 19%, 1);
+    --van-dyke-2: hsla(21, 12%, 23%, 1);
+}
+
+
+html, body {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100svh;
+    background: var(--persian-orange);
+    line-height: 1.5;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+
+.background {
+    background: url(images/nigerian-ashley-okoli-showing-off-grill\ \(2\).png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.preview {
+    background-color: var(--persian-orange);
+    color: var(--bistre);
+}
+
+.preview-page {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-family: "Molen";
+    min-height: 100svh;
+    min-width: 100%;
+}
+
+.preview-page h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+
+nav {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    background: transparent;
+    padding: 2vmax 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+
+}
+
+.menu-btn {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    top: calc(2.67vw);
+    left: calc(2.67vw);
+    height: calc(6.67vw);
+}
+
+.menu-btn span {
+    width: calc(6.67vw);
+}
+
+.menu-btn span {
+    width: calc(4.67vw);
+    height: 1px;
+    transform: translateY(-50%);
+    background-color: #fefaf4;
+    transition: .2s cubic-bezier(.4, 0, 0, 1);
+    position: absolute;
+    top: 40%; 
+    bottom: unset;
+    vertical-align: middle;
+}
+
+.menu-icon:before {
+    position: absolute;
+    width: calc(3.25520833vw);
+    height: 1px;
+    display: inline-block;
+    border-radius: unset;
+    top: calc(-2.3vw);
+    background-color: #fefaf4;
+    opacity: 1;
+    content: "";
+    transition: .2s cubic-bezier(.4, 0, 0, 1);
+    transition-property: transform, opacity;
+}
+
+.menu-icon:after {
+    position: absolute;
+    width: calc(3.25520833vw);
+    height: 1px;
+    border-radius: unset;
+    display: inline-block;
+    top: calc(2.3vw);
+    background-color: #fefaf4;
+    opacity: 1;
+    content: "";
+    transition: .2s cubic-bezier(.4, 0, 0, 1);
+    transition-property: transform, opacity;
+}
+
+.portfolio {
+    display: block;
+    top: calc(1.3vw);
+    width: calc(6.13333333vw);
+    height: calc(6.66666667vw);
+    line-height: calc(6.66666667vw);
+    content: "";
+    background-image: url(/icons/login-button-light.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+
+.port-and-shop {
+    position: relative;
+    display: flex;
+    width: 100%;
+    gap: calc(8.66666667vw);
+    top: calc(1.3vw);
+    left: calc(8.66666667vw + 4.67vw);
+
+}
+
+.shopping-bag {
+    width: calc(6.13333333vw);
+    height: calc(6.66666667vw);
+    line-height: calc(6.66666667vw);
+    background-image: url(icons/shoppingbag-light.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ashley-logo {
+    content: "";
+    width: calc(20.13333333vw);
+    height: calc(8.66666667vw);
+    line-height: calc(8.66666667vw);
+    background-image: url(logos/ashley-logo.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo {
+    position: relative;
+    top: calc(1.3vw);
+}
+
+.menu-flex {
+    display: flex;
+    
+}
