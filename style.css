@@ -27,6 +27,20 @@
     --bistre-2: hsla(23, 26%, 18%, 1);
     --van-dyke: hsla(24, 15%, 19%, 1);
     --van-dyke-2: hsla(21, 12%, 23%, 1);
+
+    /*Background 2*/
+    --text: #3D2220;
+    --background: #d2d8cf;
+    --primary: #261818;
+    --secondary: #7a6866;
+    --accent: #301c1c;
+
+    /* CSS HSL */
+    --bistre-3: hsla(4, 31%, 18%, 1);
+    --licorice: hsla(0, 26%, 15%, 1);
+    --wenge: hsla(6, 9%, 44%, 1);
+    --licorice-2: hsla(0, 23%, 12%, 1);
+    --timberwolf: hsla(100, 10%, 83%, 1);
 }
 
 
@@ -38,13 +52,17 @@ html, body {
 
 body {
     min-height: 100svh;
-    background: var(--persian-orange);
     line-height: 1.5;
     font-family: 'Libre Baskerville', serif;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
+}
+
+table, tr, td {
+   border-collapse: initial; 
+   background: transparent;
 }
 
 ul {
@@ -212,7 +230,7 @@ nav {
 
 .switch-menu {
     position: absolute;
-    bottom: calc(10.67vw);
+    bottom: calc(5rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -242,8 +260,54 @@ nav {
 }
 
 .menu-flex li {
+    font-size: .8rem;
     opacity: 1;
     padding: 2px 1.125rem 2px 1.125rem;
     cursor: pointer;
 }
 
+.background-about {
+    background: var(--background);
+}
+
+.about-container {
+    display: flex !important;
+    height: 100vh;
+    width: 100%;
+}
+
+.about-left-cell {
+    text-align: left !important;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+}
+
+.about-left-cell p {
+    font-weight: 700;
+    font-family: 'Molenilo';
+    font-size: 1.5rem; 
+}
+
+.about-right-cell {
+    display: block;
+    overflow: hidden;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+}
+
+.about-right-cell {
+    background: url(images/background-one.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .7;
+}
+
+.about-right-cell img {
+    display: none;
+}
