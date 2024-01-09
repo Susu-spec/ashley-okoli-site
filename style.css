@@ -73,9 +73,10 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
-button{
+button {
 	background: none;
 	color: inherit;
 	border: none;
@@ -86,7 +87,7 @@ button{
 }
 
 .background {
-    background: url(images/nigerian-ashley-okoli-showing-off-grill\ \(2\).png);
+    background: url(images/nigerian-ashley-okoli-showing-off-grill.jpeg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -119,7 +120,7 @@ button{
 }
 
 .preview-page h1 {
-    transform: translateY(calc(-6.5625vw));
+    transform: translateY(calc(-8.5625vw));
     transition: .8s cubic-bezier(.4, 0, 0, 1);
     transition-property: transform;
     animation-name: loader_animation;
@@ -161,6 +162,10 @@ nav {
     align-items: center;
 }
 
+.nav-content {
+    display: none;
+}
+
 .wrapper {
     width: 100%;
 }
@@ -199,7 +204,7 @@ nav {
 
 .menu-icon:before {
     position: absolute;
-    width: calc(3.25520833vw);
+    width: calc(6.25520833vw);
     height: 1px;
     display: inline-block;
     border-radius: unset;
@@ -275,15 +280,19 @@ nav {
     top: calc(1.3vw);
 }
 
+header {
+    position: fixed;
+    z-index: 2;
+}
+
 .switch-menu {
-    position: absolute;
-    bottom: calc(5rem);
+    position: fixed;
+    bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     width: 100%;
-    
 }
 
 .menu-content {
@@ -299,28 +308,25 @@ nav {
     gap: 1rem;
     color: rgba(244, 240, 240, 1);
     align-items: center;
-    justify-content: center;
-    
+    justify-content: center;    
 }
 
 .menu-flex {
-    font-weight: 700;
     line-height: 3rem;
-
-    
-
 }
 
 .menu-flex li {
     font-size: .8rem;
+    font-weight: 900;
     opacity: 1;
     padding: 2px 1.125rem 2px 1.125rem;
     cursor: pointer;
-
 }
 
 .background-about {
     background: var(--background);
+    position: absolute;
+    height: 100%;
 }
 
 .about-container {
@@ -367,42 +373,49 @@ nav {
 }
 
 .about-left-cell span {
-    font-size: 100%;
-    font-weight: 200;
-    font-family: 'Libre Baskerville';
+    font-size: 2.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: 'Molen';
 }
 
 .page {
-    position: absolute;
     width: 100%;
-    height: 100%;
-    border-radius: 1vmax;
+    border-radius: 2vmax;
     transition: height 0.5s ease;
 }
 
 .page.active {
-    z-index: 2;
-    height: 200%;
+    animation-name: height_animation;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    transform-origin: bottom center;
+    
 }
 
 .page.inactive {
-    z-index: -1;
-    height: 0%;
+    transition: .8s cubic-bezier(.4, 0, 0, 1);
+    transition-property: transform;
+    animation-name: scale_animation;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
 }
 
 @keyframes scale-animation {
     from {
         transform: scale(1);
+        filter: blur(0);
     }
 
     to {
-        transform: scale(.9);
+        transform: scale(.8);
+        filter: blur(2px);
     }
 }
 
 @keyframes loader_animation {
     from {
-        transform: translateY(calc(-6.5625vw));
+        transform: translateY(calc(-10.5625vw));
 
     }
     to {
@@ -415,6 +428,96 @@ nav {
         width: 10%;
     }
     to {
-        width: 65%;
+        width: 30%;
+    }
+}
+
+@keyframes height_animation {
+    from {
+        height: 0%;
+    }
+    to {
+        height: 100%;
+    }
+}
+
+@media only screen and (min-width: 43.75rem) {
+    nav {
+        padding: unset;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .nav-content {
+        display: flex;
+        margin: 0 auto;
+        width: 100%;
+        position: fixed;
+        top: 2rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-content ul {
+        margin: 0 auto;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .nav-content li {
+        background: rgba(29, 27, 27, 0.8);
+        text-transform: uppercase;
+        padding: .5rem 1.5rem;
+        cursor: pointer;
+        border-radius: 1vmax;
+        border: 1px solid #fefaf4;
+        margin-right: .8rem;
+        font-size: .6rem;
+        letter-spacing: 2px;
+        color: #fefaf4;
+
+    }
+
+    .menu-btn span{
+    display: none;
+  }
+    .port-and-shop {
+    position: absolute;
+    left: unset;
+ 
+    top: inherit;
+    justify-content: end;
+    gap: 1.5rem;
+  }
+
+  .portfolio,.shopping-bag {
+    width: 28px;
+    height: 30px;
+    margin-right: calc(2.2vw);
+  }
+
+  .logo {
+    display: block;
+    position: absolute;
+    left: calc(2.86458333vw);
+    top: calc(1.875vw);
+    margin: 0;
+    width: calc(8.8125vw);
+    height: auto;
+    opacity: 1;
+    z-index: 13;
+}
+
+  .ashley-logo {
+    width: 120px;
+    height: 50px;
+  }
+}
+
+@media only screen and (min-width: 44rem) and (max-width: 56.25rem) {
+    .port-and-shop, .logo {
+        top: 1.5rem;
     }
 }

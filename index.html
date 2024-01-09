@@ -10,64 +10,33 @@
     <title>Ashley Okoli</title>
 </head>
 <header>
+    <div class="nav-content">
+        <ul>
+        <li>Campaigns</li>
+        <li>Runway</li>
+        <li>Archive</li>
+    </ul>
+</div>
+
     <div class="switch-menu">
         <div class="menu-content">
             <ul class="menu-flex">
-                <button><li>Home</li></button>
-                <button><li>About</li></button>
-                <button><li>Press</li></button>
+                <button onclick="navigateTo('page1');"><li>Home</li></button>
+                <button onclick="navigateTo('page2');"><li>About</li></button>
+                <button onclick="navigateTo('page3');"><li>Press</li></button>
             </ul>
         </div>
     </div> 
 </header>
 <body>
     <main>
-        <div class="preview">
-            <div class="preview-page">
-                <div class="preview-text">
-                    <h1>ASHLEY OKOLI</h1>
-                </div>
+        
+        <div id="carousel">
+            <div id="carousel-wrapper">
+
             </div>
         </div>
-        <article class="background">
-            <div class="wrapper">
-                <nav>
-                    <div class="row">
-                        <div class="menu">
-                            <span class="menu-btn">
-                                <span class="menu-icon"></span>
-                            </span>
-                        </div>
-                        <div class="port-and-shop">
-                            <div class="portfolio"></div>
-                            <div class="shopping-bag"></div>
-                        </div>
-                    </div>
-                    <div class="logo">
-                        <div class="ashley-logo"></div>
-                    </div> 
-                </nav>
-            </div>
-        </article>                
-        <article class="background-about page">
-            <table>
-                <tr class="about-container">
-                    <td class="about-left-cell">
-                        <div class="about-quote">
-                            <span>“Besides my aura & influence, of course, my biggest asset is my versatility"</span>
-                        </div>    
-                            
-                    </td>
-                    <td class="about-right-cell">
-                        <div class="image">
-                            <img src="images/background-one.jpg" alt="">
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </article>
-        <article class="background-press">
-        </article>
     </main>
 </body>
+<script src="script.js"></script>
 </html>
