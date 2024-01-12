@@ -94,84 +94,55 @@ class VerticalCarousel {
 
       renderPage() {
             const carouselWrapper = document.getElementById('carousel-wrapper');
-            //carouselWrapper.innerHTML = '';
             carouselWrapper.innerHTML = this.pages[this.currentPage];
-            //showing up should be smooth as well
-            
-      } 
-      
-      findIndexOf(page) {
-            console.log(page);
-            const keys = Object.keys(this.pages);
-            const index = keys.indexOf(page);
-            //  for (let i = 1; i < keys.length + 1; i++) {
-            //       const key = keys[i];
-            //       console.log(this.pages[key]);  
-                  
-            //       if (this.pages.hasOwnProperty(page)) {
-                        return index !== -1 ? index + 1 : null;
-                  // }
-                  
-            }
-            // return -1;
-      // }
+      }
 
-      
-
-      navigateTo(page) {
-     
-            // const pageIndex = this.findIndexOf(page);
-            // const keys = Object.keys(this.pages);
-            // const key = keys[pageIndex - 1];
-            // const elementId = key;
-            // const element = document.getElementById(elementId);
-            // console.log(this.pages[key]);
+      setPreviousPage() {
             const carouselWrapper = document.getElementById('carousel-wrapper');
+            const previous = carouselWrapper.querySelector('.current-page');
+            
 
-            if (carouselWrapper.children.length > 0) { 
-            const previous = carouselWrapper.children[0];
-
-            gsap.to(previous,
-                  {
-                        scale: ".9",
+            if (previous) {
+                  gsap.to(previous, {
+                        scale: 0.9,
                         borderRadius: "2vmax",
-                        ease: "sine-out"
+                        duration: 1,
+                        ease: "sine.inOut"
+                  });
+                  console.log("yes");
+            }
+      }
+    
+      navigateTo(page) {
+            if (this.pages[page]) {
+                  this.currentPage = page;
+                  this.renderPage();
+                  const currentPageElement = document.getElementById(this.currentPage);
+                  gsap.fromTo(currentPageElement, {
+                  translateY: "100%"
+                  }, {
+                        translateY: 0,
+                        scale: 1,
+                        duration: 1,
+                        ease: "sine.inOut",
+                        onComplete: () => {
+                              currentPageElement.classList.add('current-page');
+                        }
                   });
             }
-
-            // if (pageIndex !== 0) {
-            //       console.log(key);
-
-
                   
-            // }
-            
-            setTimeout(() => {
-                  if (this.pages[page] ) {
-                        //   // Update the current page
-                        this.currentPage = page;
-                        // Render the updated pages
-                        this.renderPage();
-                        gsap.fromTo(".page", 
-                        {
-                              transform: "translateY(80%)"
-                        }, 
-                        {
-                              transform: "translateY(0)", 
-                              duration: .6, 
-                              ease: "sine.in",
-                              zIndex: "1"
-                        });
-                  }
-            }, 1000);    
       }
+
 }
 
 
 
 navigateTo = function(page) {
       const verticalCarousel = new VerticalCarousel();
-      verticalCarousel.navigateTo(page);
+      verticalCarousel.setPreviousPage();
+      setTimeout(() => {
+            verticalCarousel.navigateTo(page);
+      }, 1000);
       
 }
 
