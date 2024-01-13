@@ -13,6 +13,13 @@
         url("/fonts/molen/molen-surplus.otf") format("woff");
 }
 
+@font-face {
+    font-family: 'Sprat Family';
+    src:  local("Sprat Extended Bold"),
+    url("fonts/sprat-type-master/Sprat-type-master/Sprat-ExtendedBold.otf") format("opentype");
+    
+}
+
 /* CSS HEX */
 :root {
     --persian-orange: #CC9361ff;
@@ -20,6 +27,8 @@
     --bistre-2: #3A2B22ff;
     --van-dyke: #39302Aff;
     --van-dyke-2: #413833ff;
+    --font: "Sprat Condensed";
+    --timberwolf: #D1D7CEff;
 
     /* CSS HSL */
     --persian-orange: hsla(28, 51%, 59%, 1);
@@ -55,8 +64,6 @@ body {
     line-height: 1.5;
     overflow-x: hidden;
     font-family: 'Libre Baskerville', serif;
- 
-
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -193,6 +200,14 @@ nav {
     min-height: 100vh;
 }
 
+.page {
+    z-index: 1;
+}
+
+.current-page {
+    z-index: 13;
+}
+
 .menu-btn {
     cursor: pointer;
     display: inline-block;
@@ -298,7 +313,7 @@ nav {
 
 header {
     position: fixed;
-    z-index: 2;
+    z-index: 1000;
 }
 
 .switch-menu {
@@ -309,7 +324,7 @@ header {
     align-items: center;
     margin: 0 auto;
     width: 100%;
-    z-index: 20;
+    z-index: 1000;
 }
 
 .menu-content {
@@ -342,6 +357,8 @@ header {
 
 .background-about {
     background: var(--background);
+    background-color: #D1D7CE;
+    font-family: var(--font);
     position: absolute;
     height: 100%;
 }
@@ -362,17 +379,20 @@ header {
     z-index: 1;
 }
 
-.about-left-cell p {
+.about-left-cell span {
     font-weight: 700;
-    font-family: 'Molenilo';
-    font-size: 1.5rem; 
+    font-family: var(--font);
+    font-stretch: condensed;
+    color: black;
+    text-transform: uppercase;
+    font-size: 2.5rem; 
 }
 
 .about-right-cell {
     display: block;
     overflow: hidden;
-    min-width: 100% !important;
-    min-height: 100vh !important;
+    min-width: 100% ;
+    min-height: 100vh;
     position: absolute;
 }
 
@@ -389,10 +409,9 @@ header {
     display: none;
 }
 
-.about-left-cell span {
-    font-size: 2.8rem;
+.about-left-cell p {
+    font-size: 1.5rem;
     font-weight: 500;
-    text-transform: uppercase;
     font-family: 'Molen';
 }
 
@@ -497,16 +516,16 @@ header {
 
     }
 
-    .menu-btn span{
-    display: none;
-  }
+    .menu-btn span {
+        display: none;
+    }
+
     .port-and-shop {
-    position: absolute;
-    left: unset;
- 
-    top: inherit;
-    justify-content: end;
-    gap: 1.5rem;
+        position: absolute;
+        left: unset;
+        top: inherit;
+        justify-content: end;
+        gap: 1.5rem;
   }
 
   .portfolio,.shopping-bag {
@@ -530,6 +549,52 @@ header {
   .ashley-logo {
     width: 120px;
     height: 50px;
+  }
+
+  .about-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .background-about {
+    background-color: var(--timberwolf);
+  }
+
+  td {
+    width: unset;
+  }
+
+  .about-left-cell span {
+    font-size: 1.8rem;
+  }
+
+  .about-left-cell, .about-right-cell {
+    width: 100%;
+  }
+
+  .about-right-cell {
+    position: relative;
+    background: unset;
+    min-width: auto;
+    min-height: auto;
+    filter: unset;
+  }
+
+  .about-right-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-right-cell img {
+    display: block;
+    height: 90vh;
+    border-radius: 5%;
+  }
+
+  .about-left-cell p {
+    font-family: var(--font);
   }
 }
 
