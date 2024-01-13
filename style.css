@@ -62,12 +62,36 @@ html, body {
 body {
     min-height: 100svh;
     line-height: 1.5;
-    overflow-x: hidden;
+    overflow: hidden;
     font-family: 'Libre Baskerville', serif;
+    background-color: #0e0e0e;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    height: 6vmax;
+    width: 100%;
+    position: absolute;
+    background: transparent;
+}
+
+
+nav {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    background: transparent;
+    padding: 2vmax 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 table, tr, td {
@@ -158,16 +182,6 @@ button {
 }
 
 
-nav {
-    position: relative;
-    width: 90%;
-    margin: 0 auto;
-    background: transparent;
-    padding: 2vmax 0 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .nav-content {
     display: none;
@@ -331,7 +345,7 @@ header {
     color: #fefaf4;
     clip-path: inset(0 0 0 0 round 12px);
     background: rgba(29, 27, 27, 0.4);
-    animation: width_animation 1s ease-in-out;
+    animation: width_animation 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 
 }
 
@@ -437,6 +451,10 @@ header {
     animation-iteration-count: 1;
 }
 
+.brand-item {
+    display: none;
+}
+
 @keyframes scale-animation {
     from {
         transform: scale(1);
@@ -464,7 +482,7 @@ header {
         width: 10%;
     }
     to {
-        width: 30%;
+        width: 60%;
     }
 }
 
@@ -558,7 +576,7 @@ header {
   }
 
   .background-about {
-    background-color: var(--timberwolf);
+    background-color: #0e0e0e;
   }
 
   td {
@@ -566,7 +584,12 @@ header {
   }
 
   .about-left-cell span {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
+    color: var(--timberwolf);
+  }
+
+  .about-quote {
+    width: 60%;
   }
 
   .about-left-cell, .about-right-cell {
@@ -585,17 +608,69 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+  }
+
+  .about-right-cell image {
+    width: 100%;
+    height: 100%;
   }
 
   .about-right-cell img {
     display: block;
+    width: 100%;
     height: 90vh;
     border-radius: 5%;
+    transform: scale(0.75);
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  .about-right-cell:hover img {
+    transform: scale(1.0);
+    filter: grayscale(0.5) brightness(0.75);
   }
 
   .about-left-cell p {
     font-family: var(--font);
   }
+
+.brand-item {
+    display: block;
+    position: absolute;
+    left: 60%;
+    bottom: 15%;
+    max-width: fit-content;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-family: 'Orbitron';
+  }
+  
+  .brand-item a {
+    text-decoration: none;
+    max-width: fit-content;
+  }
+
+  .shape {
+    width: 175px;
+    height: 175px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.75);
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    border-radius: 0 1vmax 1vmax 0;
+    opacity: 0;
+  }
+
+  .about-right-cell:hover .shape {
+    opacity: 1;
+  }
+
 }
 
 @media only screen and (min-width: 44rem) and (max-width: 56.25rem) {

@@ -40,6 +40,7 @@ class VerticalCarousel {
       constructor() {
             this.currentPage = '';
             this.previousPage = '';
+            this.newPage = '';
             this.pages = {
                   'page1':  `<article id="page1" class="background page">
                   <div class="wrapper">
@@ -77,7 +78,24 @@ class VerticalCarousel {
                                     </td>
                                     <td class="about-right-cell">
                                           <div class="image">
-                                          <img src="images/background-one.jpg" alt="">
+                                                <img src="images/background-one.jpg" alt="">
+                                          </div>
+                                          <div class="brand-item">
+                                                <a href="https://bubblegumclub.co.za/fashion/making-waves-in-the-nigerian-alte-movement-ashley-okoli-sets-the-scene/">
+                                                      <div class="shape">
+                                                            <div class="text">
+                                                                  <span>B</span>
+                                                                  <span>U</span>
+                                                                  <span>B</span>
+                                                                  <span>B</span>
+                                                                  <span>L</span>
+                                                                  <span>E</span>
+                                                                  <span>G</span>
+                                                                  <span>U</span>
+                                                                  <span>M</span>
+                                                            </div>
+                                                      </div>
+                                                </a>
                                           </div>
                                     </td>
                               </tr>
@@ -95,36 +113,50 @@ class VerticalCarousel {
       renderPage() {
             const carouselWrapper = document.getElementById('carousel-wrapper');
             carouselWrapper.innerHTML = this.pages[this.currentPage];
+
       }
 
       setPreviousPage() {
             const carouselWrapper = document.getElementById('carousel-wrapper');
             const previous = carouselWrapper.querySelector('.current-page');
+
             
 
             if (previous) {
                   gsap.to(previous, {
-                        scale: 0.9,
+                        scaleX: 0.98,
+                        scaleY: 0.9,
                         borderRadius: "2vmax",
-                        duration: 1,
-                        ease: "sine.inOut"
+                        duration: .8,
+                        ease: "ease.outBack"
                   });
-                  console.log("yes");
             }
+      }
+
+      findIndexOf(page) {
+            const keys = Object.keys(this.pages);
+            const index = keys.indexOf(page);
+            return index !== -1 ? index + 1 : null;
       }
     
       navigateTo(page) {
+            const carouselWrapper = document.getElementById('carousel-wrapper');
+            
             if (this.pages[page]) {
                   this.currentPage = page;
                   this.renderPage();
+                  // const keys = Object.keys(this.pages);
+                  // const pageIndex = this.findIndexOf(this.currentPage);
+                  // const key = keys[pageIndex - 2];
+                  // carouselWrapper.innerHTML += this.pages[key];
                   const currentPageElement = document.getElementById(this.currentPage);
                   gsap.fromTo(currentPageElement, {
-                  translateY: "100%"
+                  translateY: "70%"
                   }, {
                         translateY: 0,
                         scale: 1,
-                        duration: 1,
-                        ease: "sine.inOut",
+                        duration: .8,
+                        ease: "ease.outBack",
                         onComplete: () => {
                               currentPageElement.classList.add('current-page');
                         }
