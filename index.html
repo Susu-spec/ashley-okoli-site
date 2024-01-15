@@ -7,17 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <title>Ashley Okoli</title>
 </head>
-<header>
+<header class="header">
     <div class="nav-content">
         <ul>
-        <li>Campaigns</li>
-        <li>Runway</li>
-        <li>Archive</li>
+        <li><span>Campaigns</span></li>
+        <li><span>Runway</span></li>
+        <li><span>Archive</span></li>
     </ul>
-</div>
-
+    </div>
     <div class="switch-menu">
         <div class="menu-content">
             <ul class="menu-flex">
@@ -25,19 +25,24 @@
                 <button onclick="navigateTo('page2');"><li>About</li></button>
                 <button onclick="navigateTo('page3');"><li>Press</li></button>
             </ul>
+            <div class="line"></div>
         </div>
     </div> 
 </header>
 <body>
     <main>
-        
-        <div id="carousel">
-            <div id="carousel-wrapper">
-
+        <div class="preview">
+            <div class="preview-page">
+                <div class="preview-text">
+                    <h1>ASHLEY OKOLI</h1>
+                </div>
             </div>
         </div>
+        <div id="carousel-wrapper">
+        </div>
+        <div class="campaign"></div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script src="script.js"></script>
-
+</body>
 </html>

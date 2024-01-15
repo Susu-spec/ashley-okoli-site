@@ -10,13 +10,15 @@
     font-style: normal;
     src: local("Molen Surplus"),
         url("/fonts/molen/molen-surplus.otf") format("opentype"),
-        url("/fonts/molen/molen-surplus.otf") format("woff");
+        url("/fonts/molen/molen-surplus.otf") format("otf");
 }
 
 @font-face {
     font-family: 'Sprat Family';
-    src:  local("Sprat Extended Bold"),
-    url("fonts/sprat-type-master/Sprat-type-master/Sprat-ExtendedBold.otf") format("opentype");
+    src:  local("Sprat Extended Thin"),
+            local("Sprat Condensed Bold"),
+        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedThin.otf") format("opentype"),
+        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedBold.otf") format("opentype");
     
 }
 
@@ -27,7 +29,7 @@
     --bistre-2: #3A2B22ff;
     --van-dyke: #39302Aff;
     --van-dyke-2: #413833ff;
-    --font: "Sprat Condensed";
+    --font: "Sprat Family";
     --timberwolf: #D1D7CEff;
 
     /* CSS HSL */
@@ -60,11 +62,11 @@ html, body {
 }
 
 body {
-    min-height: 100svh;
     line-height: 1.5;
     overflow: hidden;
     font-family: 'Libre Baskerville', serif;
     background-color: #0e0e0e;
+    transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -152,7 +154,7 @@ button {
 
 .preview-page h1 {
     transform: translateY(calc(-8.5625vw));
-    transition: .8s cubic-bezier(.4, 0, 0, 1);
+    transition: .8s cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-property: transform;
     animation-name: loader_animation;
     animation-duration: 1s;
@@ -198,15 +200,18 @@ button {
 
 }
 
-.carousel-wrapper {
+#carousel-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
     min-height: 100vh;
+    perspective: 1000px;    
 }
 
 .carousel-item {
     position: absolute;
+
+    transform: translate3d(0, 0, -100px);
     top: 0;
     left: 0;
     width: 100%;
@@ -346,7 +351,7 @@ header {
     clip-path: inset(0 0 0 0 round 12px);
     background: rgba(29, 27, 27, 0.4);
     animation: width_animation 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-
+    position: relative;
 }
 
 .menu-flex {
@@ -367,6 +372,34 @@ header {
     opacity: 1;
     padding: 2px 1.125rem 2px 1.125rem;
     cursor: pointer;
+}
+
+.nav-content li {
+    position: relative;
+}
+
+.nav-content li:before {
+    width: 0;
+    color: #161616;
+    background-color: white;
+    overflow: hidden;
+    position: absolute;
+    content: "";
+    transition: all 1s cubic-bezier(0.84, 0, 0.09, 0.99);
+}
+
+
+.nav-content li:hover:before {
+    width: 100%;
+}
+
+.line {
+    width: 100%;
+    position: absolute;
+    bottom: 25%;
+    height: 3px;
+    background-color:  rgba(244, 240, 240, 1);
+    transform: translate(0px, 0px) scale(0.1342, 1)
 }
 
 .background-about {
@@ -455,6 +488,70 @@ header {
     display: none;
 }
 
+.background-press {
+    background: #161616;
+    color: white;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 85%;
+    content: "";
+    background: rgba(255, 255, 255, 0.4);
+    width: 1px;
+    z-index: 1000;
+}
+
+.navigation-wrapper ul {
+    margin-top: 5rem;
+    margin-left: 3.75rem;
+    margin-bottom: 12.5rem;
+    list-style: none;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation-item {
+    display: block;
+    user-select: none;
+    margin: 5.5rem 0;
+}
+
+.navigation-wrapper a {
+    font-family: "Sprat Family";
+    font-weight: bold;
+    font-size: 1.67rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.navigation-wrapper span {
+    position: relative;
+    display: block;
+    /* width: fit-content; */
+}
+
+.navigation-item span:before {
+    width: 0;
+    color: white;
+    overflow: hidden;
+    position: absolute;
+    content: attr(data-text);
+    transition: all 1s cubic-bezier(0.84, 0, 0.09, 0.99);
+}
+
+.navigation-item span:hover:before {
+    width: 100%;
+    max-width: fit-content;
+}
+
 @keyframes scale-animation {
     from {
         transform: scale(1);
@@ -482,7 +579,7 @@ header {
         width: 10%;
     }
     to {
-        width: 60%;
+        width: 30%;
     }
 }
 
@@ -671,6 +768,19 @@ header {
     opacity: 1;
   }
 
+  .navigation-wrapper ul {
+    margin-top: 15rem;
+    margin-left: 11.25rem;
+    margin-bottom: 12.5rem;
+  }
+
+  .navigation-wrapper a {
+    font-size: 5rem;
+  }
+
+  .navigation-item {
+    margin: 7.5rem 0;
+    }
 }
 
 @media only screen and (min-width: 44rem) and (max-width: 56.25rem) {

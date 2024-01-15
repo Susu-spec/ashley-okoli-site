@@ -1,8 +1,8 @@
 /**
  * Add menu item dash
- * Translate along the x axis and as content loads,
+ * Translate along the x axis and as content loads
  * scale along x-axis and scale shortly on y-axis
- */
+ **/
 
 /**
  * Set right cell to have background and image to fade out
@@ -12,12 +12,21 @@
  * Tap on button to remove div and add the button 
  * element's div name
  */
-const buttons = document.getElementsByTagName("button");
-      pages = document.querySelector(".page");
-      active = document.querySelector(".active");
-      inactive = document.querySelector(".inactive");
+const buttons = document.querySelectorAll(".menu-flex button"),
+      line = document.querySelector(".line"),
+      pages = document.querySelector(".page"),
+      active = document.querySelector(".active"),
+      inactive = document.querySelector(".inactive"),
       preview = document.querySelector(".preview");
+
+var body = document.body;
+    docElem = document.documentElement;
       
+
+Array.from(buttons).forEach((button) => {
+      let rect = button.getBoundingClientRect();
+      console.log(rect);
+});
 
 
      
@@ -42,7 +51,7 @@ class VerticalCarousel {
             this.previousPage = '';
             this.newPage = '';
             this.pages = {
-                  'page1':  `<article id="page1" class="background page">
+                  'page1':  `<article id="page1" class="background page carousel-item">
                   <div class="wrapper">
                      <nav>
                            <div class="row">
@@ -72,7 +81,7 @@ class VerticalCarousel {
                               <tr class="about-container">
                                     <td class="about-left-cell">
                                           <div class="about-quote">
-                                          <span>“Besides my aura & influence, of course, my biggest asset is my versatility"</span>
+                                                <span>"Besides my aura & influence, of course, my biggest asset is my versatility"</span>
                                           </div>    
                                           
                                     </td>
@@ -105,8 +114,61 @@ class VerticalCarousel {
                   ,
               
               'page3': 
-                  `<article id="page3" class="background-press carousel-item"></article>` 
-              
+                  `<article id="page3" class="background-press carousel-item">
+                        <div class="navigation-wrapper">
+                              <div class="press-preview-wrapper">
+                                    <div class="press-preview"></div>
+                              </div>
+                              <ul class="navigation-wrapper">
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="W-Magazine">W-Magazine</span>
+                                          </a>
+                                    </li>
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="OkayAfrica.">OkayAfrica.</span>
+                                          </a>
+                                    </li>
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="VOGUE">VOGUE</span>
+                                          </a>
+                                    </li>
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="YNaija.com">YNaija.com</span>
+                                          </a>
+                                    </li>
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="FARFETCH">FARFETCH</span>
+                                          </a>
+                                    </li>
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="allure">allure</span>
+                                          </a>
+                                    </li>
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="pgm club">pgm club</span>
+                                          </a>
+                                    </li>
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="BUBBLEGUM CLUB">BUBBLEGUM CLUB</span>
+                                          </a>
+                                    </li>
+                                    <li class="navigation-item">
+                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                                <span data-text="culted">culted</span>
+                                          </a>
+                                    </li>
+                              </ul>
+                        </div>
+                        <div class="progress-bar" id="progress-bar"></div>
+                  </article>`           
             };
       }
 
@@ -124,8 +186,7 @@ class VerticalCarousel {
 
             if (previous) {
                   gsap.to(previous, {
-                        scaleX: 0.98,
-                        scaleY: 0.9,
+                        transform: "translate3d(0, 0, -100px)",
                         borderRadius: "2vmax",
                         duration: .8,
                         ease: "ease.outBack"
@@ -140,11 +201,10 @@ class VerticalCarousel {
       }
     
       navigateTo(page) {
-            const carouselWrapper = document.getElementById('carousel-wrapper');
-            
             if (this.pages[page]) {
                   this.currentPage = page;
                   this.renderPage();
+                  
                   // const keys = Object.keys(this.pages);
                   // const pageIndex = this.findIndexOf(this.currentPage);
                   // const key = keys[pageIndex - 2];
@@ -153,7 +213,7 @@ class VerticalCarousel {
                   gsap.fromTo(currentPageElement, {
                   translateY: "70%"
                   }, {
-                        translateY: 0,
+                        transform: "translate3d(0, 0, 0)",
                         scale: 1,
                         duration: .8,
                         ease: "ease.outBack",
@@ -165,18 +225,62 @@ class VerticalCarousel {
                   
       }
 
+      removeDiv() {
+            preview.style.display = "none";
+      }
+
+      scroll() {
+            const carouselWrapper = document.getElementById('carousel-wrapper');
+            if (this.pages['page3']) {
+                  var scroll = docElem.scrollTop || body.scrollTop,
+                  dh = Math.max(docElem.offsetHeight, body.offsetHeight, docElem.scrollHeight, body.scrollHeight),
+                  scrollPercent = (scroll / (dh)) * 100;
+            carouselWrapper.getElementById('progress-bar').style.height = `${scrollPercent}%`;  
+            } 
+      }
+
+      // setLine(page) {
+      //   const pageIndex = this.findIndexOf(page);
+      //       const np = pageIndex / (buttons.length - 1);
+      //       const sum = 0;
+      //       console.log(sum);
+      //       var buttonTotal = 0;
+      //       buttons.forEach((button => {
+      //                  buttonTotal += button.getBoundingClientRect().x;
+      //                  console.log(buttonTotal);
+      //             })
+      //             );
+      //       const average = (sum + buttonTotal) / buttons.length;
+      //       console.log(average);
+
+      //       const clicked = buttons[pageIndex].getBoundingClientRect().x;
+      //       console.log(clicked);
+      //       const translationValue = `${clicked - average}px`;
+      //       console.log(translationValue);
+      //       line.style.transform = `translateX(${translationValue}) scale(0.1342, 1)`;
+      // }
+
 }
 
 
+const verticalCarousel = new VerticalCarousel();
+setTimeout(() => {    
+      verticalCarousel.navigateTo('page1');
+      verticalCarousel.removeDiv();
+}, 5000);
 
 navigateTo = function(page) {
       const verticalCarousel = new VerticalCarousel();
       verticalCarousel.setPreviousPage();
       setTimeout(() => {
             verticalCarousel.navigateTo(page);
+            // verticalCarousel.setLine(page);
       }, 1000);
-      
+      verticalCarousel.scroll();   
 }
+
+
+
 
 
 //     /**
