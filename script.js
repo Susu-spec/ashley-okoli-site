@@ -17,7 +17,8 @@ const buttons = document.querySelectorAll(".menu-flex button"),
       pages = document.querySelector(".page"),
       active = document.querySelector(".active"),
       inactive = document.querySelector(".inactive"),
-      preview = document.querySelector(".preview");
+      preview = document.querySelector(".preview"),
+      progressBar = document.querySelector(".progress-bar");
 
 var body = document.body;
     docElem = document.documentElement;
@@ -45,6 +46,9 @@ Array.from(buttons).forEach((button) => {
  * 
  */
 
+
+console.log('worked');
+
 class VerticalCarousel {
       constructor() {
             this.currentPage = '';
@@ -61,8 +65,8 @@ class VerticalCarousel {
                                  </span>
                                  </div>
                                  <div class="port-and-shop">
-                                       <div class="portfolio"></div>
-                                       <div class="shopping-bag"></div>
+                                       <div class="portfolio"><div class="Profile"><span data-text="Profile"></span></div></div>
+                                       <div class="shopping-bag"><div class="Shop"><span data-text="Shop"></span></div>
                                  </div>
                            </div>
                            <div class="logo">
@@ -81,7 +85,7 @@ class VerticalCarousel {
                               <tr class="about-container">
                                     <td class="about-left-cell">
                                           <div class="about-quote">
-                                                <span>"Besides my aura & influence, of course, my biggest asset is my versatility"</span>
+                                                <span><span>"Besides my aura & </span><span>influence, of </span><span>course, my biggest <span>asset </span><span>is my versatility"</span></span>
                                           </div>    
                                           
                                     </td>
@@ -117,57 +121,59 @@ class VerticalCarousel {
                   `<article id="page3" class="background-press carousel-item">
                         <div class="navigation-wrapper">
                               <div class="press-preview-wrapper">
-                                    <div class="press-preview"></div>
+                                    <div class="press-preview">
+                                    <div class="progress-bar" id="progress-bar"></div>
+                                    </div>
                               </div>
                               <ul class="navigation-wrapper">
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="https://www.wmagazine.com/fashion/ashley-okoli-alte-nigeria-interview" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="W-Magazine">W-Magazine</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="https://www.okayafrica.com/ashley-okoli-creative-director-alte-music-videos/" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="OkayAfrica.">OkayAfrica.</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="https://www.vogue.com/article/ashley-okoli-alte-fashion-lagos" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="VOGUE">VOGUE</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="https://ynaija.com/ynaijanonbinary-10-young-nigerians-challenging-conformity-in-the-culture/" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="YNaija.com">YNaija.com</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="https://www.farfetch.com/ng/stories/women/city-stories-trippin-lagos-solis-ashley-okoli-jess-finesse-edit-ss19.aspx" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="FARFETCH">FARFETCH</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="https://www.allure.com/story/queer-nigerians-makeup-as-resistence" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="allure">allure</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="/thepgmclub.com/blog/looking-at-the-alte-creative-ashley-okoli-taking-the-nigeria-fashion-industry-by-storm-with-her-experimental-styling/" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="pgm club">pgm club</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="https://bubblegumclub.co.za/fashion/making-waves-in-the-nigerian-alte-movement-ashley-okoli-sets-the-scene/" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="BUBBLEGUM CLUB">BUBBLEGUM CLUB</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
-                                          <a href="" target="blank" class="navigation-link navigation-link-1">
+                                          <a href="https://culted.com/ashley-okoli-lagos-poster-girl/" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="culted">culted</span>
                                           </a>
                                     </li>
                               </ul>
                         </div>
-                        <div class="progress-bar" id="progress-bar"></div>
+                        
                   </article>`           
             };
       }
@@ -225,19 +231,31 @@ class VerticalCarousel {
                   
       }
 
-      removeDiv() {
-            preview.style.display = "none";
+      scroll() {
+            if (this.pages['page3']) {
+                  window.addEventListener("scroll", function() {
+                        var scroll = docElem.scrollTop || body.scrollTop,
+                            dh = Math.max(docElem.offsetHeight, body.offsetHeight, docElem.scrollHeight, body.scrollHeight),
+                            scrollPercent = (scroll / (dh)) * 100;
+                        console.log(scroll);
+                        console.log(scrollPercent);
+                        progressBar.style.height = `${scrollPercent}%`; 
+                  });
+            }
       }
 
-      scroll() {
-            const carouselWrapper = document.getElementById('carousel-wrapper');
-            if (this.pages['page3']) {
-                  var scroll = docElem.scrollTop || body.scrollTop,
-                  dh = Math.max(docElem.offsetHeight, body.offsetHeight, docElem.scrollHeight, body.scrollHeight),
-                  scrollPercent = (scroll / (dh)) * 100;
-            carouselWrapper.getElementById('progress-bar').style.height = `${scrollPercent}%`;  
-            } 
+      removeDiv(element) {
+            element.style.display = "none";
       }
+
+      // scroll() {
+      //       // const carouselWrapper = document.getElementById('carousel-wrapper');
+      //       // document.addEventListener("DOMContentLoaded", function() {
+      //             // if (this.pages['page3']) {
+                        
+      //             // }
+      //       // }); 
+      // }
 
       // setLine(page) {
       //   const pageIndex = this.findIndexOf(page);
@@ -266,7 +284,7 @@ class VerticalCarousel {
 const verticalCarousel = new VerticalCarousel();
 setTimeout(() => {    
       verticalCarousel.navigateTo('page1');
-      verticalCarousel.removeDiv();
+      verticalCarousel.removeDiv(preview);
 }, 5000);
 
 navigateTo = function(page) {
@@ -276,8 +294,21 @@ navigateTo = function(page) {
             verticalCarousel.navigateTo(page);
             // verticalCarousel.setLine(page);
       }, 1000);
-      verticalCarousel.scroll();   
+
+      verticalCarousel.scroll();
+    
+        
+            /**
+             * Translate span elements across y-axis
+             * 
+             * remove about-quote
+             * add and translate about across y-axis
+             */
 }
+
+
+      
+
 
 
 

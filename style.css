@@ -313,6 +313,9 @@ button {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.profile, .shop {
+    display: none;
+}
 
 .ashley-logo {
     content: "";
@@ -326,8 +329,9 @@ button {
 }
 
 .logo {
-    position: relative;
-    top: calc(1.3vw);
+    position: absolute;
+    top: calc(4vw);
+    right: 0;
 }
 
 header {
@@ -643,10 +647,25 @@ header {
         gap: 1.5rem;
   }
 
-  .portfolio,.shopping-bag {
+  .portfolio, .shopping-bag {
     width: 28px;
     height: 30px;
     margin-right: calc(2.2vw);
+  }
+
+  .Profile, .shop {
+    width: 0px;
+
+  }
+
+  .Profile span:hover , .shop span:hover {
+    width: 100%;
+    display: block;
+    font-family: 'Sprat Family', sans-serif;
+    font-weight: Thin;
+    font-size: 12px;
+    z-index: 2000;
+    transition: all 1s cubic-bezier(0.84, 0, 0.09, 0.99);
   }
 
   .logo {
