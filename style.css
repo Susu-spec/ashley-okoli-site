@@ -119,6 +119,10 @@ button {
 	outline: inherit;
 }
 
+.scroll {
+    overflow: scroll;
+}
+
 .background {
     background: url(images/nigerian-ashley-okoli-showing-off-grill.jpeg);
     background-position: center center;
@@ -153,11 +157,11 @@ button {
 }
 
 .preview-page h1 {
-    transform: translateY(calc(-8.5625vw));
-    transition: .8s cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition-property: transform;
+    /* transform: translateY(calc(-8.5625vw));
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
+    /* transition-property: transform; */
     animation-name: loader_animation;
-    animation-duration: 1s;
+    animation-duration: 1.4s;
     animation-iteration-count: infinite;
 }
 
@@ -166,7 +170,6 @@ button {
     color: var(--bistre);
     transition: transform .5s ease-in-out;
 }
-
 
 .preview-page {
     display: flex;
@@ -182,8 +185,6 @@ button {
     font-size: 3rem;
     text-align: center;
 }
-
-
 
 .nav-content {
     display: none;
@@ -210,7 +211,6 @@ button {
 
 .carousel-item {
     position: absolute;
-
     transform: translate3d(0, 0, -100px);
     top: 0;
     left: 0;
@@ -313,6 +313,7 @@ button {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .profile, .shop {
     display: none;
 }
@@ -354,7 +355,8 @@ header {
     color: #fefaf4;
     clip-path: inset(0 0 0 0 round 12px);
     background: rgba(29, 27, 27, 0.4);
-    animation: width_animation 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    backdrop-filter: blur(.5rem);
+    animation: width_animation 1s cubic-bezier(0.19, 1, 0.22, 1);
     position: relative;
 }
 
@@ -391,7 +393,6 @@ header {
     content: "";
     transition: all 1s cubic-bezier(0.84, 0, 0.09, 0.99);
 }
-
 
 .nav-content li:hover:before {
     width: 100%;
@@ -430,13 +431,28 @@ header {
     z-index: 1;
 }
 
-.about-left-cell span {
+.about-left-cell .about-quote {
     font-weight: 700;
     font-family: var(--font);
     font-stretch: condensed;
     color: black;
     text-transform: uppercase;
-    font-size: 2.5rem; 
+    font-size: 2.5rem;
+    
+}
+
+.about-text {
+    font-size: 1.125rem;
+    font-weight: 500;
+    font-family: var(--font);
+    color: black;
+    font-stretch: condensed;
+    width: 90%;
+    animation-name: fade_in_up;
+    animation-duration: 1.25s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: .4s;
+    animation-fill-mode: forwards;
 }
 
 .about-right-cell {
@@ -495,11 +511,12 @@ header {
 .background-press {
     background: #161616;
     color: white;
-    overflow-x: hidden;
+    overflow: scroll;
 }
 
 ::-webkit-scrollbar {
     width: 0;
+    height: 0;
 }
 
 .progress-bar {
@@ -526,7 +543,9 @@ header {
     display: block;
     user-select: none;
     margin: 5.5rem 0;
+    width: fit-content;
 }
+
 
 .navigation-wrapper a {
     font-family: "Sprat Family";
@@ -539,7 +558,7 @@ header {
 .navigation-wrapper span {
     position: relative;
     display: block;
-    /* width: fit-content; */
+
 }
 
 .navigation-item span:before {
@@ -570,20 +589,24 @@ header {
 
 @keyframes loader_animation {
     from {
-        transform: translateY(calc(-10.5625vw));
+        transform: translateY(-10vw);
+        opacity: 1;
 
     }
     to {
-        transform: translateY(0);
+        opacity: .6;
+        transform: translateY(8vw);
     }
 }
 
 @keyframes width_animation {
     from {
-        width: 10%;
+        transform: scaleX(.2);
+        opacity: 0;
     }
     to {
-        width: 30%;
+        transform: scaleX(1);
+        opacity: 1;
     }
 }
 
@@ -593,6 +616,17 @@ header {
     }
     to {
         height: 100%;
+    }
+}
+
+@keyframes fade_in_up {
+    0% {
+        opacity: 0;
+        transform: translate3d(0,100%,0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
     }
 }
 
@@ -620,7 +654,6 @@ header {
         justify-content: center;
     }
 
-
     .nav-content li {
         background: rgba(29, 27, 27, 0.8);
         text-transform: uppercase;
@@ -632,7 +665,6 @@ header {
         font-size: .6rem;
         letter-spacing: 2px;
         color: #fefaf4;
-
     }
 
     .menu-btn span {

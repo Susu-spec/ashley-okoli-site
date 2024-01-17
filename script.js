@@ -1,22 +1,8 @@
-/**
- * Add menu item dash
- * Translate along the x axis and as content loads
- * scale along x-axis and scale shortly on y-axis
- **/
-
-/**
- * Set right cell to have background and image to fade out
- */
-
-/**
- * Tap on button to remove div and add the button 
- * element's div name
- */
 const buttons = document.querySelectorAll(".menu-flex button"),
       line = document.querySelector(".line"),
-      pages = document.querySelector(".page"),
-      active = document.querySelector(".active"),
-      inactive = document.querySelector(".inactive"),
+      // pages = document.querySelector(".page"),
+      // active = document.querySelector(".active"),
+      // inactive = document.querySelector(".inactive"),
       preview = document.querySelector(".preview"),
       progressBar = document.querySelector(".progress-bar");
 
@@ -30,24 +16,7 @@ Array.from(buttons).forEach((button) => {
 });
 
 
-     
 
-/**setTimeout(function () {
-      preview.style.display = "none";
-}, 5000);
-**/
-
-/**
- * header is always present
- * preview will show up until you tap on any button
- * if you tap on another button, the page associated with the button
- * will show up and previous page will scale down and blur and new
- * page will have a transition attached to it where it slowly increases in height
- * 
- */
-
-
-console.log('worked');
 
 class VerticalCarousel {
       constructor() {
@@ -86,7 +55,14 @@ class VerticalCarousel {
                                     <td class="about-left-cell">
                                           <div class="about-quote">
                                                 <span><span>"Besides my aura & </span><span>influence, of </span><span>course, my biggest <span>asset </span><span>is my versatility"</span></span>
-                                          </div>    
+                                          </div> 
+                                          <div class="about-text">
+                                                <span>Ashley Okoli is a 25 year old Stylist, Designer, Creative Director, and Social Media Influencer, with a knack for making bad b*tches looking even badder.</span>
+
+                                                <span>Ashley enjoys being in front of the camera, either as herself or as one of her many alter egos. </span>
+                                                <span>Through fashion – dressing up, and telling stories through the clothes she styles or the clothes she designs is her way of life, she is able to express herself. Which is how she steals freedom in a society that largely constricts it.</span>
+                                                <span>Through being so liberated in herself, Ashley is able to inspire people to be free also, or act as a vessel for them to express their own freedom through her.</span>
+                                                </span>
                                           
                                     </td>
                                     <td class="about-right-cell">
@@ -121,14 +97,12 @@ class VerticalCarousel {
                   `<article id="page3" class="background-press carousel-item">
                         <div class="navigation-wrapper">
                               <div class="press-preview-wrapper">
-                                    <div class="press-preview">
-                                    <div class="progress-bar" id="progress-bar"></div>
-                                    </div>
+                                    <div class="press-preview"></div>
                               </div>
                               <ul class="navigation-wrapper">
                                     <li class="navigation-item">
                                           <a href="https://www.wmagazine.com/fashion/ashley-okoli-alte-nigeria-interview" target="blank" class="navigation-link navigation-link-1">
-                                                <span data-text="W-Magazine">W-Magazine</span>
+                                                <span data-text="WMagazine">WMagazine</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
@@ -171,9 +145,9 @@ class VerticalCarousel {
                                                 <span data-text="culted">culted</span>
                                           </a>
                                     </li>
-                              </ul>
+                              </ul>   
                         </div>
-                        
+                        <div class="progress-bar" id="progress-bar"></div> 
                   </article>`           
             };
       }
@@ -181,21 +155,42 @@ class VerticalCarousel {
       renderPage() {
             const carouselWrapper = document.getElementById('carousel-wrapper');
             carouselWrapper.innerHTML = this.pages[this.currentPage];
+            
 
+            
+                  setTimeout(() => {
+                        const progressBar = document.querySelector('.carousel-item .progress-bar');
+                        const carouselItem = document.querySelector('.carousel-item');
+                        
+                  
+                        if (progressBar) {
+                              console.log("yippie");
+                              carouselItem.addEventListener("scroll", function() {
+                                    console.log('tayee');
+                                    var scrollPos = carouselItem.scrollTop,
+                                          dh = Math.max(docElem.offsetHeight, body.offsetHeight, docElem.scrollHeight, body.scrollHeight),
+                                          scrollPercent = (scrollPos / (dh)) * 100;
+                                    console.log(scrollPos);
+                                    console.log(dh);
+                                    progressBar.style.height = `${scrollPercent}%`;
+                              });
+                        }
+                        else {
+                              console.log('nope');
+                        }
+                  }
+                  , 0);
       }
 
       setPreviousPage() {
             const carouselWrapper = document.getElementById('carousel-wrapper');
-            const previous = carouselWrapper.querySelector('.current-page');
-
-            
-
+            const previous = carouselWrapper.querySelector('.current-page');   
             if (previous) {
                   gsap.to(previous, {
                         transform: "translate3d(0, 0, -100px)",
                         borderRadius: "2vmax",
                         duration: .8,
-                        ease: "ease.outBack"
+                        ease: "Strong.easeOut" /**ease.OutBack */
                   });
             }
       }
@@ -210,11 +205,13 @@ class VerticalCarousel {
             if (this.pages[page]) {
                   this.currentPage = page;
                   this.renderPage();
-                  
-                  // const keys = Object.keys(this.pages);
-                  // const pageIndex = this.findIndexOf(this.currentPage);
-                  // const key = keys[pageIndex - 2];
-                  // carouselWrapper.innerHTML += this.pages[key];
+                  if (page === 'page3') {
+                        console.log("okie");
+                        body.classList.add("scroll");
+                  }
+                  else {
+                        body.classList.remove("scroll");
+                  }
                   const currentPageElement = document.getElementById(this.currentPage);
                   gsap.fromTo(currentPageElement, {
                   translateY: "70%"
@@ -222,33 +219,63 @@ class VerticalCarousel {
                         transform: "translate3d(0, 0, 0)",
                         scale: 1,
                         duration: .8,
-                        ease: "ease.outBack",
+                        ease: "ease.OutBack",  /**Strong.easeOut */
                         onComplete: () => {
-                              currentPageElement.classList.add('current-page');
+                              currentPageElement.classList.add('current-page');                              
                         }
                   });
             }
-                  
-      }
-
-      scroll() {
-            if (this.pages['page3']) {
-                  window.addEventListener("scroll", function() {
-                        var scroll = docElem.scrollTop || body.scrollTop,
-                            dh = Math.max(docElem.offsetHeight, body.offsetHeight, docElem.scrollHeight, body.scrollHeight),
-                            scrollPercent = (scroll / (dh)) * 100;
-                        console.log(scroll);
-                        console.log(scrollPercent);
-                        progressBar.style.height = `${scrollPercent}%`; 
-                  });
-            }
+            
+            
       }
 
       removeDiv(element) {
             element.style.display = "none";
-      }
+      } 
+}
 
-      // scroll() {
+
+const verticalCarousel = new VerticalCarousel();
+setTimeout(() => {    
+      verticalCarousel.navigateTo('page1');
+      verticalCarousel.removeDiv(preview);
+}, 5000);
+
+navigateTo = function(page) {
+      const verticalCarousel = new VerticalCarousel();
+      verticalCarousel.setPreviousPage();
+      setTimeout(() => {
+            verticalCarousel.navigateTo(page);
+            // verticalCarousel.setLine(page);
+      }, 1000);
+
+      
+      
+}
+
+
+/**
+ * Add menu item dash
+ * Translate along the x axis and as content loads
+ * scale along x-axis and scale shortly on y-axis
+ **/
+
+/**
+ * Set right cell to have background and image to fade out
+ */
+
+/**
+ * Tap on button to remove div and add the button 
+ * element's div name
+ */
+
+ // const keys = Object.keys(this.pages);
+                  // const pageIndex = this.findIndexOf(this.currentPage);
+                  // const key = keys[pageIndex - 2];
+                  // carouselWrapper.innerHTML += this.pages[key];
+
+
+ // scroll() {
       //       // const carouselWrapper = document.getElementById('carousel-wrapper');
       //       // document.addEventListener("DOMContentLoaded", function() {
       //             // if (this.pages['page3']) {
@@ -278,41 +305,14 @@ class VerticalCarousel {
       //       line.style.transform = `translateX(${translationValue}) scale(0.1342, 1)`;
       // }
 
-}
 
 
-const verticalCarousel = new VerticalCarousel();
-setTimeout(() => {    
-      verticalCarousel.navigateTo('page1');
-      verticalCarousel.removeDiv(preview);
-}, 5000);
-
-navigateTo = function(page) {
-      const verticalCarousel = new VerticalCarousel();
-      verticalCarousel.setPreviousPage();
-      setTimeout(() => {
-            verticalCarousel.navigateTo(page);
-            // verticalCarousel.setLine(page);
-      }, 1000);
-
-      verticalCarousel.scroll();
-    
-        
             /**
              * Translate span elements across y-axis
              * 
              * remove about-quote
              * add and translate about across y-axis
              */
-}
-
-
-      
-
-
-
-
-
 
 //     /**
 //        * Object.keys(this.page).forEach((page) => {
@@ -322,3 +322,19 @@ navigateTo = function(page) {
 //                   carouselWrapper.appendChild(newPage);
 //             });
 //
+     
+
+/**setTimeout(function () {
+      preview.style.display = "none";
+}, 5000);
+**/
+
+/**
+ * header is always present
+ * preview will show up until you tap on any button
+ * if you tap on another button, the page associated with the button
+ * will show up and previous page will scale down and blur and new
+ * page will have a transition attached to it where it slowly increases in height
+ * 
+ */
+
