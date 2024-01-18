@@ -8,7 +8,7 @@
 @font-face {
     font-family: 'Molen';
     src: local("Molen Surplus"),
-        url("/fonts/molen/molen-surplus.otf") format("opentype");
+        url("fonts/molen/molen-surplus.otf") format("opentype");
 }
 
 @font-face {
@@ -292,7 +292,7 @@ button {
     height: calc(6.66666667vw);
     line-height: calc(6.66666667vw);
     content: "";
-    background-image: url(/icons/login-button-light.svg);
+    background-image: url(icons/login-button-light.svg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
