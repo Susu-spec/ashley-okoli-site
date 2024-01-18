@@ -167,7 +167,7 @@ class VerticalCarousel {
                               carouselItem.style.position = "relative";
                               carouselItem.addEventListener("scroll", function() {
                                     var scrollPos = carouselItem.scrollTop,
-                                          dh = Math.max(carouselItem.scrollHeight, window.innerHeight),
+                                          dh = Math.max(carouselItem.scrollHeight, carouselItem.scrollHeight, window.scrollHeight, window.offsetHeight, window.clientHeight),
                                           wh = window.innerHeight,
                                           scrollHeight = ((scrollPos - dh) / 4) * 100 ,
                                           scrollPercent = dh > wh ? (scrollPos / (dh-wh) ) * 100: (scrollPos / (wh-dh)) * 100;
@@ -183,7 +183,7 @@ class VerticalCarousel {
                                     this.addDiv(aboutText);
                                     aboutText.classList.add('fade-in');
                                     this.removeDiv(aboutQuote);
-                              }, 3000);
+                              }, 2500);
                               
                         }
                   }
@@ -228,7 +228,7 @@ class VerticalCarousel {
                   }, {
                         transform: "translate3d(0, 0, 0)",
                         transform: "scale(1)",
-                        duration: .8,
+                        duration: .6,
                         ease: "ease.OutBack",  /**Strong.easeOut */
                         onComplete: () => {
                               currentPageElement.classList.add('current-page');                              
@@ -260,7 +260,7 @@ navigateTo = function(page) {
       verticalCarousel.setPreviousPage();
       setTimeout(() => {
             verticalCarousel.navigateTo(page);
-      }, 1000);
+      }, 500);
 
       
       

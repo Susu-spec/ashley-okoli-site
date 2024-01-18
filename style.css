@@ -70,7 +70,6 @@ body {
     font-family: 'Libre Baskerville', serif;
     background-color: #0e0e0e;
     cursor: default;
-    transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -165,7 +164,7 @@ button {
     transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
     /* transition-property: transform; */
     animation-name: loader_animation;
-    animation-duration: 1.4s;
+    animation-duration: 1.5s;
     animation-iteration-count: infinite;
 }
 
@@ -187,6 +186,7 @@ button {
 
 .preview-page h1 {
     font-size: 3rem;
+    letter-spacing: 3px;
     text-align: center;
     font-family: "Molen";
 }
@@ -367,8 +367,9 @@ header {
 
 .menu-flex {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     color: rgba(244, 240, 240, 1);
+    min-width: 360px;
     align-items: center;
     justify-content: center;    
 }
@@ -378,7 +379,7 @@ header {
 }
 
 .menu-flex li {
-    font-size: .8rem;
+    font-size: .9rem;
     font-weight: 900;
     opacity: 1;
     padding: 2px 1.125rem 2px 1.125rem;
@@ -439,7 +440,7 @@ header {
 }
 
 .about-left-cell .about-quote {
-    font-family: "Sprat Condensed Thin";
+    font-family: "Sprat Condensed Regular";
     color: black;
     text-transform: uppercase;
     font-size: 2.5rem;
@@ -453,8 +454,9 @@ header {
 }
 
 .about-text {
-    font-size: 1.125rem;
+    font-size: 1.325rem;
     font-family: "Sprat Condensed Regular";
+    /* letter-spacing: 2px; */
     color: black;
     font-stretch: condensed;
     width: 90%;
@@ -484,7 +486,7 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     opacity: .7;
-    filter:blur(3px);
+    filter: blur(3px);
 }
 
 .about-right-cell img {
@@ -494,7 +496,6 @@ header {
 .about-left-cell p {
     font-size: 1.5rem;
     font-weight: 500;
-    font-family: 'Molen';
 }
 
 /* .page {
@@ -608,13 +609,13 @@ header {
 
 @keyframes loader_animation {
     from {
-        transform: translateY(-10vw);
+        transform: translateY(-8vw);
         opacity: 1;
 
     }
     to {
-        opacity: .6;
-        transform: translateY(8vw);
+        opacity: .9;
+        transform: translateY(6vw);
     }
 }
 
@@ -683,7 +684,7 @@ header {
         border-radius: 1vmax;
         border: 1px solid #fefaf4;
         margin-right: .8rem;
-        font-size: .6rem;
+        font-size: .8rem;
         letter-spacing: 2px;
         color: #fefaf4;
     }
@@ -725,12 +726,15 @@ header {
     display: block;
     position: absolute;
     left: calc(2.86458333vw);
-    top: calc(1.875vw);
     margin: 0;
     width: calc(8.8125vw);
     height: auto;
     opacity: 1;
     z-index: 13;
+}
+
+.logo, .port-and-shop {
+    top: calc(3vw);
 }
 
   .ashley-logo {
@@ -746,6 +750,11 @@ header {
 
   .background-about {
     background-color: #0e0e0e;
+  }
+
+  .menu-flex {
+    gap: 1.2rem;
+    min-width: auto;
   }
 
   td {
@@ -872,6 +881,15 @@ header {
 
 @media only screen and (min-width: 44rem) and (max-width: 56.25rem) {
     .port-and-shop, .logo {
-        top: 1.2rem;
+        top: 2rem;
+    }
+
+    .about-container {
+        flex-wrap: wrap;
+        flex-direction: column-reverse
+    }
+
+    .background-about {
+        overflow: scroll;
     }
 }
