@@ -6,8 +6,7 @@ const buttons = document.querySelectorAll(".menu-flex button"),
       preview = document.querySelector(".preview"),
       progressBar = document.querySelector(".progress-bar");
 
-var body = document.body;
-    docElem = document.documentElement;
+
       
 
 Array.from(buttons).forEach((button) => {
@@ -140,7 +139,7 @@ class VerticalCarousel {
                                                 <span data-text="BUBBLEGUM CLUB">BUBBLEGUM CLUB</span>
                                           </a>
                                     </li>
-                                    <li class="navigation-item">
+                                    <li class="navigation-item navigation-link">
                                           <a href="https://culted.com/ashley-okoli-lagos-poster-girl/" target="blank" class="navigation-link navigation-link-1">
                                                 <span data-text="culted">culted</span>
                                           </a>
@@ -161,22 +160,27 @@ class VerticalCarousel {
                   setTimeout(() => {
                         const progressBar = document.querySelector('.carousel-item .progress-bar');
                         const carouselItem = document.querySelector('.carousel-item');
-                        
+                        const aboutQuote = document.querySelector('.about-quote');
+                        const aboutText = document.querySelector('.about-text');
                   
                         if (progressBar) {
-                              console.log("yippie");
+                              carouselItem.style.position = "relative";
                               carouselItem.addEventListener("scroll", function() {
-                                    console.log('tayee');
                                     var scrollPos = carouselItem.scrollTop,
-                                          dh = Math.max(docElem.offsetHeight, body.offsetHeight, docElem.scrollHeight, body.scrollHeight),
-                                          scrollPercent = (scrollPos / (dh)) * 100;
-                                    console.log(scrollPos);
-                                    console.log(dh);
+                                          dh = Math.max(carouselItem.scrollHeight, window.innerHeight),
+                                          wh = window.innerHeight,
+                                          scrollPercent = dh > wh ? (scrollPos / (dh-wh) ) * 100: (scrollPos / (wh-dh)) * 100;
                                     progressBar.style.height = `${scrollPercent}%`;
                               });
                         }
-                        else {
-                              console.log('nope');
+
+                        if (aboutQuote) {
+                              setTimeout(() => {
+                                    this.addDiv(aboutText);
+                                    aboutText.classList.add('fade-in');
+                                    this.removeDiv(aboutQuote);
+                              }, 3000);
+                              
                         }
                   }
                   , 0);
@@ -190,7 +194,7 @@ class VerticalCarousel {
                         transform: "translate3d(0, 0, -100px)",
                         borderRadius: "2vmax",
                         duration: .8,
-                        ease: "Strong.easeOut" /**ease.OutBack */
+                        ease: "Strong.easeOut",
                   });
             }
       }
@@ -202,11 +206,11 @@ class VerticalCarousel {
       }
     
       navigateTo(page) {
+            var body = document.body;
             if (this.pages[page]) {
                   this.currentPage = page;
                   this.renderPage();
                   if (page === 'page3') {
-                        console.log("okie");
                         body.classList.add("scroll");
                   }
                   else {
@@ -214,10 +218,11 @@ class VerticalCarousel {
                   }
                   const currentPageElement = document.getElementById(this.currentPage);
                   gsap.fromTo(currentPageElement, {
-                  translateY: "70%"
+                  transform: "scaleY(.7)",
+                  transformOrigin: "bottom"
                   }, {
                         transform: "translate3d(0, 0, 0)",
-                        scale: 1,
+                        transform: "scale(1)",
                         duration: .8,
                         ease: "ease.OutBack",  /**Strong.easeOut */
                         onComplete: () => {
@@ -232,6 +237,10 @@ class VerticalCarousel {
       removeDiv(element) {
             element.style.display = "none";
       } 
+
+      addDiv(element) {
+            element.style.display = "block";
+      }
 }
 
 
@@ -246,7 +255,6 @@ navigateTo = function(page) {
       verticalCarousel.setPreviousPage();
       setTimeout(() => {
             verticalCarousel.navigateTo(page);
-            // verticalCarousel.setLine(page);
       }, 1000);
 
       

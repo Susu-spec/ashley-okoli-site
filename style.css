@@ -16,9 +16,11 @@
 @font-face {
     font-family: 'Sprat Family';
     src:  local("Sprat Extended Thin"),
-            local("Sprat Condensed Bold"),
-        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedThin.otf") format("opentype"),
-        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedBold.otf") format("opentype");
+            /* local("Sprat Condensed Bold"), */
+            local("Sprat Condensed Regular"),
+        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondesedRegular.otf") format("opentype"),
+        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedThin.otf") format("opentype");
+        /* url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedBold.otf") format("opentype"); */
     
 }
 
@@ -31,6 +33,7 @@
     --van-dyke-2: #413833ff;
     --font: "Sprat Family";
     --timberwolf: #D1D7CEff;
+
 
     /* CSS HSL */
     --persian-orange: hsla(28, 51%, 59%, 1);
@@ -66,6 +69,7 @@ body {
     overflow: hidden;
     font-family: 'Libre Baskerville', serif;
     background-color: #0e0e0e;
+    cursor: default;
     transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -413,12 +417,14 @@ header {
     font-family: var(--font);
     position: absolute;
     height: 100%;
+    overflow: hidden;
 }
 
 .about-container {
     display: flex !important;
     height: 100vh;
     width: 100%;
+    overflow: hidden;
 }
 
 .about-left-cell {
@@ -432,26 +438,36 @@ header {
 }
 
 .about-left-cell .about-quote {
-    font-weight: 700;
     font-family: var(--font);
     font-stretch: condensed;
     color: black;
     text-transform: uppercase;
     font-size: 2.5rem;
-    
+    width: 90%;
+    animation-name: fade_down_out;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 1.8s;
+    animation-fill-mode: forwards; 
+
 }
 
 .about-text {
     font-size: 1.125rem;
-    font-weight: 500;
+    font-weight: 200;
     font-family: var(--font);
     color: black;
     font-stretch: condensed;
     width: 90%;
+    opacity: 0;
+    display: none;
+}
+
+.fade-in {
     animation-name: fade_in_up;
     animation-duration: 1.25s;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-    animation-delay: .4s;
+    animation-delay: 0;
     animation-fill-mode: forwards;
 }
 
@@ -482,7 +498,7 @@ header {
     font-family: 'Molen';
 }
 
-.page {
+/* .page {
     width: 100%;
     border-radius: 2px;
     transition: height 0.5s ease;
@@ -502,7 +518,7 @@ header {
     animation-name: scale_animation;
     animation-duration: 1s;
     animation-iteration-count: 1;
-}
+} */
 
 .brand-item {
     display: none;
@@ -521,7 +537,7 @@ header {
 
 .progress-bar {
     position: fixed;
-    top: 0;
+    top: 8rem;
     left: 85%;
     content: "";
     background: rgba(255, 255, 255, 0.4);
@@ -542,7 +558,7 @@ header {
 .navigation-item {
     display: block;
     user-select: none;
-    margin: 5.5rem 0;
+    margin: 3rem 0;
     width: fit-content;
 }
 
@@ -573,6 +589,10 @@ header {
 .navigation-item span:hover:before {
     width: 100%;
     max-width: fit-content;
+}
+
+.navigation-link {
+    margin-bottom: 5rem;
 }
 
 @keyframes scale-animation {
@@ -610,12 +630,14 @@ header {
     }
 }
 
-@keyframes height_animation {
+@keyframes fade_down_out {
     from {
-        height: 0%;
+        transform: scaleY(1);
+        opacity: 1;
     }
     to {
-        height: 100%;
+        transform: scaleY(0);
+        opacity: 0;
     }
 }
 
@@ -731,9 +753,16 @@ header {
     width: unset;
   }
 
-  .about-left-cell span {
+  .about-left-cell .about-quote {
+    width: 60%;
     font-size: 2.5rem;
+    color: white;
+  }
+
+  .about-text {
+    font-size: 1rem;
     color: var(--timberwolf);
+    width: 60%;
   }
 
   .about-quote {
@@ -831,6 +860,14 @@ header {
 
   .navigation-item {
     margin: 7.5rem 0;
+    }
+
+    .progress-bar {
+        top: 22rem;
+    }
+
+    .navigation-link {
+        bottom: 12.5rem;
     }
 }
 
