@@ -369,13 +369,13 @@ header {
     display: flex;
     gap: 1.5rem;
     color: rgba(244, 240, 240, 1);
-    min-width: 360px;
+    min-width: 300px;
     align-items: center;
     justify-content: center;    
 }
 
 .menu-flex {
-    line-height: 2.8rem;
+    line-height: 3rem;
 }
 
 .menu-flex li {
@@ -454,7 +454,7 @@ header {
 }
 
 .about-text {
-    font-size: 1.325rem;
+    font-size: 1.125rem;
     font-family: "Sprat Condensed Regular";
     /* letter-spacing: 2px; */
     color: black;
