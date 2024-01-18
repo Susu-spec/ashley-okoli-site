@@ -9,19 +9,20 @@
     font-family: 'Molen';
     font-style: normal;
     src: local("Molen Surplus"),
-        url("/fonts/molen/molen-surplus.otf") format("opentype"),
-        url("/fonts/molen/molen-surplus.otf") format("otf");
+        url("/fonts/molen/molen-surplus.otf") format("opentype");
 }
 
 @font-face {
-    font-family: 'Sprat Family';
-    src:  local("Sprat Extended Thin"),
-            /* local("Sprat Condensed Bold"), */
-            local("Sprat Condensed Regular"),
-        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondesedRegular.otf") format("opentype"),
-        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedThin.otf") format("opentype");
+    font-family: 'Sprat Condensed Regular';
+    src: local("Sprat Condensed Regular"),
+        url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondesedRegular.otf") format("opentype");
         /* url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedBold.otf") format("opentype"); */
     
+}
+
+@font-face {
+    font-family: 'Sprat Condensed Thin';
+    src: url("fonts/sprat-type-master/Sprat-type-master/Sprat-CondensedThin.otf") format("opentype");
 }
 
 /* CSS HEX */
@@ -373,7 +374,7 @@ header {
 }
 
 .menu-flex {
-    line-height: 3rem;
+    line-height: 2.8rem;
 }
 
 .menu-flex li {
@@ -414,7 +415,7 @@ header {
 .background-about {
     background: var(--background);
     background-color: #D1D7CE;
-    font-family: var(--font);
+    font-family: "Sprat Condensed Thin";
     position: absolute;
     height: 100%;
     overflow: hidden;
@@ -438,8 +439,7 @@ header {
 }
 
 .about-left-cell .about-quote {
-    font-family: var(--font);
-    font-stretch: condensed;
+    font-family: "Sprat Condensed Thin";
     color: black;
     text-transform: uppercase;
     font-size: 2.5rem;
@@ -454,8 +454,7 @@ header {
 
 .about-text {
     font-size: 1.125rem;
-    font-weight: 200;
-    font-family: var(--font);
+    font-family: "Sprat Condensed Regular";
     color: black;
     font-stretch: condensed;
     width: 90%;
@@ -564,7 +563,7 @@ header {
 
 
 .navigation-wrapper a {
-    font-family: "Sprat Family";
+    font-family: "Sprat Condensed Thin";
     font-weight: bold;
     font-size: 1.67rem;
     text-decoration: none;
@@ -583,7 +582,7 @@ header {
     overflow: hidden;
     position: absolute;
     content: attr(data-text);
-    transition: all 1s cubic-bezier(0.84, 0, 0.09, 0.99);
+    transition: all .8s cubic-bezier(0.84, 0, 0.09, 0.99);
 }
 
 .navigation-item span:hover:before {
