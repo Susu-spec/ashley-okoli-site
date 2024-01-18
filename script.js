@@ -101,7 +101,7 @@ class VerticalCarousel {
                               <ul class="navigation-wrapper">
                                     <li class="navigation-item">
                                           <a href="https://www.wmagazine.com/fashion/ashley-okoli-alte-nigeria-interview" target="blank" class="navigation-link navigation-link-1">
-                                                <span data-text="WMagazine">WMagazine</span>
+                                                <span data-text="W-Magazine">W-Magazine</span>
                                           </a>
                                     </li>
                                     <li class="navigation-item">
@@ -169,8 +169,12 @@ class VerticalCarousel {
                                     var scrollPos = carouselItem.scrollTop,
                                           dh = Math.max(carouselItem.scrollHeight, window.innerHeight),
                                           wh = window.innerHeight,
+                                          scrollHeight = ((scrollPos - dh) / 4) * 100 ,
                                           scrollPercent = dh > wh ? (scrollPos / (dh-wh) ) * 100: (scrollPos / (wh-dh)) * 100;
-                                    progressBar.style.height = `${scrollPercent}%`;
+                                          
+                                          scrollPercent = Math.max(scrollPercent, scrollHeight);
+     
+                                          progressBar.style.height = `${scrollPercent}%`;
                               });
                         }
 
@@ -218,7 +222,8 @@ class VerticalCarousel {
                   }
                   const currentPageElement = document.getElementById(this.currentPage);
                   gsap.fromTo(currentPageElement, {
-                  transform: "scaleY(.7)",
+                  // transform: "scaleY(.8)",
+                  transform: "translateY(70%)",
                   transformOrigin: "bottom"
                   }, {
                         transform: "translate3d(0, 0, 0)",
