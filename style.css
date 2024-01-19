@@ -486,7 +486,7 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     opacity: .7;
-    filter: blur(3px);
+    filter: blur(9px);
 }
 
 .about-right-cell img {
