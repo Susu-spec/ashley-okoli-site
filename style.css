@@ -305,7 +305,7 @@ button {
 
 .menu-text {
     position: absolute;
-    right: -25%;
+    right: 0;
     top: 0;
     font-family: "Orbitron";
     font-weight: 500;
