@@ -1,14 +1,3 @@
-// const buttons = document.querySelectorAll(".menu-flex li"),
-//       line = document.querySelector(".line"),
-      // pages = document.querySelector(".page"),
-      // active = document.querySelector(".active"),
-      // inactive = document.querySelector(".inactive"),
-      preview = document.querySelector(".preview"),
-      progressBar = document.querySelector(".progress-bar");
-
-
-      
-
 // function setLine (buttons) {
 //       Array.from(buttons).forEach((button) => {
 //       let rect = button.offsetWidth;
@@ -17,22 +6,22 @@
 // }
 
 var t1 = gsap.timeline({
-      paused: "true"
-});
-t1.to(".menu", {
-      duration: 1,
-      x: "0%",
-      ease: Expo.easeInOut
-});
-t1.fromTo(".li", {
-      y: "-110%",
-      opacity: 0 
-},{
-      duration: .5,
-      opacity: 1,
-      y: "0%",
-      stagger: 0.25
-});
+            paused: "true"
+      });
+      t1.to(".menu", {
+            duration: 1,
+            x: "0%",
+            ease: Expo.easeInOut
+      });
+      t1.fromTo(".li", {
+            y: "-110%",
+            opacity: 0 
+      },{
+            duration: .5,
+            opacity: 1,
+            y: "0%",
+            stagger: 0.25
+      });
 
 function toggle(){
       t1.play();
@@ -41,9 +30,6 @@ function toggle(){
 function toggleClose() {
       t1.reverse();
 }
-
-
-
 
 class VerticalCarousel {
       constructor() {
@@ -274,9 +260,7 @@ class VerticalCarousel {
                               currentPageElement.classList.add('current-page');                              
                         }
                   });
-            }
-            
-            
+            }      
       }
 
       removeDiv(element) {
@@ -290,9 +274,15 @@ class VerticalCarousel {
 
 
 const verticalCarousel = new VerticalCarousel();
-setTimeout(() => {    
+const preview = document.querySelector(".preview");
+const header = document.querySelector(".header");
+if(preview){
+      verticalCarousel.removeDiv(header);
+} 
+setTimeout(() => {
       verticalCarousel.navigateTo('page1');
       verticalCarousel.removeDiv(preview);
+      verticalCarousel.addDiv(header);
 }, 5000);
 
 navigateTo = function(page) {
