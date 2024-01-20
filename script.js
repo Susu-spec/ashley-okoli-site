@@ -1,5 +1,5 @@
-const buttons = document.querySelectorAll(".menu-flex button"),
-      line = document.querySelector(".line"),
+// const buttons = document.querySelectorAll(".menu-flex li"),
+//       line = document.querySelector(".line"),
       // pages = document.querySelector(".page"),
       // active = document.querySelector(".active"),
       // inactive = document.querySelector(".inactive"),
@@ -9,10 +9,38 @@ const buttons = document.querySelectorAll(".menu-flex button"),
 
       
 
-Array.from(buttons).forEach((button) => {
-      let rect = button.getBoundingClientRect();
-      console.log(rect);
+// function setLine (buttons) {
+//       Array.from(buttons).forEach((button) => {
+//       let rect = button.offsetWidth;
+//       console.log(rect);
+// });
+// }
+
+var t1 = gsap.timeline({
+      paused: "true"
 });
+t1.to(".menu", {
+      duration: 1,
+      x: "0%",
+      ease: Expo.easeInOut
+});
+t1.fromTo(".li", {
+      y: "-110%",
+      opacity: 0 
+},{
+      duration: .5,
+      opacity: 1,
+      y: "0%",
+      stagger: 0.25
+});
+
+function toggle(){
+      t1.play();
+}
+
+function toggleClose() {
+      t1.reverse();
+}
 
 
 
@@ -25,22 +53,6 @@ class VerticalCarousel {
             this.pages = {
                   'page1':  `<article id="page1" class="background page carousel-item">
                   <div class="wrapper">
-                     <nav>
-                           <div class="row">
-                                 <div class="menu">
-                                 <span class="menu-btn">
-                                       <span class="menu-icon"></span>
-                                 </span>
-                                 </div>
-                                 <div class="port-and-shop">
-                                       <div class="portfolio"><div class="Profile"><span data-text="Profile"></span></div></div>
-                                       <div class="shopping-bag"><div class="Shop"><span data-text="Shop"></span></div>
-                                 </div>
-                           </div>
-                           <div class="logo">
-                                 <div class="ashley-logo"></div>
-                           </div> 
-                     </nav>
                   </div>
                </article> 
                `
@@ -211,6 +223,34 @@ class VerticalCarousel {
     
       navigateTo(page) {
             var body = document.body;
+            const buttons = document.querySelectorAll('.menu-flex button');
+            console.log(buttons);
+            const keys = Object.keys(buttons);
+            const line = document.querySelector(".line");
+
+            console.log(line.offsetWidth);
+            
+            buttons.forEach((button) => {
+                  button.addEventListener("click", () => {
+                        var linePosition = 0;
+                        var incrementAmount = 10;
+                        const buttonIndex = keys.indexOf(button);
+                        console.log(buttonIndex);
+                        const targetPosition = Math.abs(buttonIndex) * button.offsetWidth;
+                        console.log(targetPosition);
+                  if (linePosition < targetPosition) {
+                        linePosition += incrementAmount;
+                        linePosition = Math.min(linePosition, targetPosition);
+                        console.log(linePosition);
+                  } else if (linePosition > targetPosition) {
+                        linePosition -= incrementAmount;
+                        linePosition = Math.max(linePosition, targetPosition);
+                  }
+                        line.style.opacity = "1";
+                        line.style.transform = `translateX(${linePosition}px) scale(0.1342, 1)`;
+                  });
+            });
+            
             if (this.pages[page]) {
                   this.currentPage = page;
                   this.renderPage();
@@ -262,8 +302,10 @@ navigateTo = function(page) {
             verticalCarousel.navigateTo(page);
       }, 500);
 
-      
-      
+      const buttons = document.querySelectorAll('.menu-flex button');
+      for (var i = 0; i < buttons.length; i++) {
+            console.log(buttons[i].offsetWidth);
+      }     
 }
 
 
@@ -315,7 +357,7 @@ navigateTo = function(page) {
       //       console.log(clicked);
       //       const translationValue = `${clicked - average}px`;
       //       console.log(translationValue);
-      //       line.style.transform = `translateX(${translationValue}) scale(0.1342, 1)`;
+   //      line.style.transform = `translateX(${translationValue}) scale(0.1342, 1)`;
       // }
 
 

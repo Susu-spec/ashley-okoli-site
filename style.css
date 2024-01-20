@@ -54,7 +54,7 @@
     --licorice: hsla(0, 26%, 15%, 1);
     --wenge: hsla(6, 9%, 44%, 1);
     --licorice-2: hsla(0, 23%, 12%, 1);
-    --timberwolf: hsla(100, 10%, 83%, 1);
+    --timberwolf: hsla(100, 10%, 83%, 1); 
 }
 
 
@@ -89,7 +89,6 @@ header {
 
 
 nav {
-    position: relative;
     width: 90%;
     margin: 0 auto;
     background: transparent;
@@ -127,13 +126,22 @@ button {
 }
 
 .background {
-    background: url(images/ashley-okoli-grill.png);
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.background::before {
+    background: url(images/nigerian-ashley-okoli-showing-off-grill.jpeg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    content: '';
+    height: 100%;
     width: 100%;
-    position: relative;
+    position: fixed;
+    will-change: transform;
+    z-index: -1;
 }
 
 .blur {
@@ -155,14 +163,11 @@ button {
 }
 
 .preview-text {
-    height: calc(8.5625vw);
+    height: calc(5.5625vw);
     overflow: hidden;
 }
 
 .preview-page h1 {
-    /* transform: translateY(calc(-8.5625vw));
-    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
-    /* transition-property: transform; */
     animation-name: loader_animation;
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
@@ -203,7 +208,6 @@ button {
     display: flex;
     gap: .5rem;
     align-items: center;
-
 }
 
 #carousel-wrapper {
@@ -239,6 +243,7 @@ button {
     top: calc(2.67vw);
     left: calc(2.67vw);
     height: calc(6.67vw);
+    margin-right: .5rem;
 }
 
 .menu-btn span {
@@ -249,12 +254,13 @@ button {
     width: calc(4.67vw);
     height: 1px;
     transform: translateY(-50%);
-    background-color: #fefaf4;
+    background-color: #d2d8cf;
     transition: .2s cubic-bezier(.4, 0, 0, 1);
     position: absolute;
-    top: 40%; 
+    top: 30%; 
     bottom: unset;
     vertical-align: middle;
+    
 }
 
 .menu-icon:before {
@@ -264,7 +270,7 @@ button {
     display: inline-block;
     border-radius: unset;
     top: calc(-2.3vw);
-    background-color: #fefaf4;
+    background-color: #d2d8cf;
     opacity: 1;
     content: "";
     transition: .2s cubic-bezier(.4, 0, 0, 1);
@@ -278,14 +284,71 @@ button {
     border-radius: unset;
     display: inline-block;
     top: calc(2.3vw);
-    background-color: #fefaf4;
+    background-color: #d2d8cf;
     opacity: 1;
     content: "";
     transition: .2s cubic-bezier(.4, 0, 0, 1);
     transition-property: transform, opacity;
 }
 
+
+.menu {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #0e0e0e;
+    transform: translateX(-110%);
+    z-index: 2000;
+}
+
+.menu-text {
+    position: absolute;
+    right: -25%;
+    top: 0;
+    font-family: "Orbitron";
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--timberwolf);
+    font-size: 2rem;
+
+}
+
+.ul {
+    display: flex;
+    /* opacity: 0; */
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 300px;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.ul li {
+     margin: 1.3rem 0;
+     z-index: 1000;
+}
+
+.ul li a {
+    text-decoration: none;
+    color: var(--timberwolf);
+    transition: all 2s;
+    font-family: "Sprat Condensed Regular";
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    mix-blend-mode: difference;
+}
+
 .portfolio {
+    position: relative;
+}
+
+.portfolio::before {
     display: block;
     top: calc(1.3vw);
     width: calc(6.13333333vw);
@@ -310,9 +373,15 @@ button {
 }
 
 .shopping-bag {
+    position: relative;
+}
+
+.shopping-bag::before {
+    display: block;
     width: calc(6.13333333vw);
     height: calc(6.66666667vw);
     line-height: calc(6.66666667vw);
+    content: "";
     background-image: url(icons/shoppingbag-light.svg);
     background-position: center center;
     background-repeat: no-repeat;
@@ -336,8 +405,7 @@ button {
 
 .logo {
     position: absolute;
-    top: calc(4vw);
-    right: 0;
+    right: 15%;
 }
 
 header {
@@ -386,6 +454,7 @@ header {
     cursor: pointer;
 }
 
+
 .nav-content li {
     position: relative;
 }
@@ -410,7 +479,8 @@ header {
     bottom: 25%;
     height: 3px;
     background-color:  rgba(244, 240, 240, 1);
-    transform: translate(0px, 0px) scale(0.1342, 1)
+    transform: translate(0px, 0px) scale(0.1342, 1);
+    opacity: 0;
 }
 
 .background-about {
@@ -456,7 +526,6 @@ header {
 .about-text {
     font-size: 1.125rem;
     font-family: "Sprat Condensed Regular";
-    /* letter-spacing: 2px; */
     color: black;
     font-stretch: condensed;
     width: 90%;
@@ -497,28 +566,6 @@ header {
     font-size: 1.5rem;
     font-weight: 500;
 }
-
-/* .page {
-    width: 100%;
-    border-radius: 2px;
-    transition: height 0.5s ease;
-}
-
-.page.active {
-    animation-name: height_animation;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-    transform-origin: bottom center;
-    
-}
-
-.page.inactive {
-    transition: .8s cubic-bezier(.4, 0, 0, 1);
-    transition-property: transform;
-    animation-name: scale_animation;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-} */
 
 .brand-item {
     display: none;
@@ -574,7 +621,6 @@ header {
 .navigation-wrapper span {
     position: relative;
     display: block;
-
 }
 
 .navigation-item span:before {
@@ -700,9 +746,9 @@ header {
         top: inherit;
         justify-content: end;
         gap: 1.5rem;
-  }
+    }
 
-  .portfolio, .shopping-bag {
+  .portfolio::before, .shopping-bag::before {
     width: 28px;
     height: 30px;
     margin-right: calc(2.2vw);
@@ -735,7 +781,7 @@ header {
 }
 
 .logo, .port-and-shop {
-    top: calc(3vw);
+    top: inherit;
 }
 
   .ashley-logo {
@@ -881,8 +927,12 @@ header {
 }
 
 @media only screen and (min-width: 44rem) and (max-width: 56.25rem) {
-    .port-and-shop, .logo {
-        top: 2rem;
+    .port-and-shop {
+        top: 3vw;
+    }
+
+    .logo {
+        top: unset;
     }
 
     .about-container {
