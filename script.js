@@ -1,10 +1,3 @@
-// function setLine (buttons) {
-//       Array.from(buttons).forEach((button) => {
-//       let rect = button.offsetWidth;
-//       console.log(rect);
-// });
-// }
-
 var t1 = gsap.timeline({
             paused: "true"
       });
@@ -23,7 +16,7 @@ var t1 = gsap.timeline({
             stagger: 0.25
       });
 
-function toggle(){
+function toggle() {
       t1.play();
 }
 
@@ -153,13 +146,12 @@ class VerticalCarousel {
             const carouselWrapper = document.getElementById('carousel-wrapper');
             carouselWrapper.innerHTML = this.pages[this.currentPage];
             
-
-            
                   setTimeout(() => {
                         const progressBar = document.querySelector('.carousel-item .progress-bar');
                         const carouselItem = document.querySelector('.carousel-item');
                         const aboutQuote = document.querySelector('.about-quote');
                         const aboutText = document.querySelector('.about-text');
+                        
                   
                         if (progressBar) {
                               carouselItem.style.position = "relative";
@@ -184,6 +176,31 @@ class VerticalCarousel {
                               }, 2500);
                               
                         }
+
+                        const about = document.querySelector('.background-about');
+                        const shoppingBag = document.querySelector(".shopping-bag");
+                        const portfolio = document.querySelector(".portfolio");
+                        const menuBtn = document.querySelector(".menu-btn span");
+                        const active = document.querySelector(".menu-active");
+                        if (about) {
+                              shoppingBag.classList.add("shopping-bag-active"); 
+                              portfolio.classList.add("portfolio-active");
+                              menuBtn.classList.add("menu-dark");
+                        }
+                        else {
+                              shoppingBag.classList.remove("shopping-bag-active"); 
+                              portfolio.classList.remove("portfolio-active");
+                              menuBtn.classList.remove("menu-dark");
+                        }
+
+                        menuBtn.addEventListener("click", () => {
+                              if (active) {
+                                    menuBtn.classList.remove("menu-active");
+                              }
+                              else {
+                                    menuBtn.classList.add("menu-active");
+                              }
+                        })
                   }
                   , 0);
       }
@@ -276,7 +293,7 @@ class VerticalCarousel {
 const verticalCarousel = new VerticalCarousel();
 const preview = document.querySelector(".preview");
 const header = document.querySelector(".header");
-if(preview){
+if(preview) {
       verticalCarousel.removeDiv(header);
 } 
 setTimeout(() => {

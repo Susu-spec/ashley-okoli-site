@@ -81,7 +81,6 @@ a {
 }
 
 header {
-    height: 6vmax;
     width: 100%;
     position: absolute;
     background: transparent;
@@ -120,6 +119,7 @@ button {
 	cursor: pointer;
 	outline: inherit;
 }
+
 
 .scroll {
     overflow: scroll;
@@ -260,7 +260,35 @@ button {
     top: 30%; 
     bottom: unset;
     vertical-align: middle;
-    
+    transition: .2s cubic-bezier(.4, 0, 0, 1);
+    transition-property: transform, opacity;   
+}
+
+.menu-dark {
+    background-color: #0e0e0e !important;
+}
+
+.menu-dark:before {
+    background-color: #0e0e0e !important;
+}
+
+.menu-dark:after {
+    background-color: #0e0e0e !important;
+}
+
+.menu-active {
+    transform: rotate(45deg) translateY(-50%) !important;
+    width: calc(6vw) !important;
+    z-index: 2500;
+}
+
+.menu-active::before {
+    transform: rotate(90deg) translate(calc(2.3vw), 0) !important;
+}
+
+.menu-active::after {
+    transform: rotate(-45deg) translate(calc(1.86666667vw), calc(-1.86666667vw)) !important;
+    opacity: 0 !important;
 }
 
 .menu-icon:before {
@@ -337,7 +365,7 @@ button {
     text-decoration: none;
     color: var(--timberwolf);
     transition: all 2s;
-    font-family: "Sprat Condensed Regular";
+    font-family: "Orbitron";
     font-size: 1.5rem;
     text-transform: uppercase;
     font-weight: 500;
@@ -345,10 +373,6 @@ button {
 }
 
 .portfolio {
-    position: relative;
-}
-
-.portfolio::before {
     display: block;
     top: calc(1.3vw);
     width: calc(6.13333333vw);
@@ -376,7 +400,7 @@ button {
     position: relative;
 }
 
-.shopping-bag::before {
+.shopping-bag {
     display: block;
     width: calc(6.13333333vw);
     height: calc(6.66666667vw);
@@ -403,6 +427,13 @@ button {
     background-size: cover;
 }
 
+.shopping-bag-active {
+    background-image: url(icons/shoppingbag-black.svg);
+}
+
+.portfolio-active {
+    background-image: url(icons/login-button-black.svg);
+}
 .logo {
     position: absolute;
     right: 15%;
@@ -520,7 +551,6 @@ header {
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     animation-delay: 1.8s;
     animation-fill-mode: forwards; 
-
 }
 
 .about-text {
@@ -748,7 +778,7 @@ header {
         gap: 1.5rem;
     }
 
-  .portfolio::before, .shopping-bag::before {
+  .portfolio, .shopping-bag {
     width: 28px;
     height: 30px;
     margin-right: calc(2.2vw);
