@@ -163,7 +163,7 @@ button {
 }
 
 .preview-text {
-    height: calc(5.5625vw);
+    height: calc(6vw);
     overflow: hidden;
 }
 
@@ -243,7 +243,8 @@ button {
     top: calc(2.67vw);
     left: calc(2.67vw);
     height: calc(6.67vw);
-    margin-right: .5rem;
+    width: calc(6.25520833vw);
+    z-index: 3000;
 }
 
 .menu-btn span {
@@ -252,7 +253,7 @@ button {
 
 .menu-btn span {
     width: calc(4.67vw);
-    height: 1px;
+    height: 2px;
     transform: translateY(-50%);
     background-color: #d2d8cf;
     transition: .2s cubic-bezier(.4, 0, 0, 1);
@@ -276,25 +277,25 @@ button {
     background-color: #0e0e0e !important;
 }
 
-.menu-active {
+.menu-active, .menu__dark--active {
     transform: rotate(45deg) translateY(-50%) !important;
     width: calc(6vw) !important;
-    z-index: 2500;
+    z-index: 3000;
 }
 
-.menu-active::before {
+.menu-active::before, .menu__dark--active {
     transform: rotate(90deg) translate(calc(2.3vw), 0) !important;
 }
 
-.menu-active::after {
-    transform: rotate(-45deg) translate(calc(1.86666667vw), calc(-1.86666667vw)) !important;
+.menu-active::after, .menu__dark--active {
+    transform: rotate(-45deg) translate(calc(1.87vw), calc(-1.87vw)) !important;
     opacity: 0 !important;
 }
 
 .menu-icon:before {
     position: absolute;
     width: calc(6.25520833vw);
-    height: 1px;
+    height: 2px;
     display: inline-block;
     border-radius: unset;
     top: calc(-2.3vw);
@@ -308,7 +309,7 @@ button {
 .menu-icon:after {
     position: absolute;
     width: calc(3.25520833vw);
-    height: 1px;
+    height: 2px;
     border-radius: unset;
     display: inline-block;
     top: calc(2.3vw);
@@ -334,7 +335,7 @@ button {
 .menu-text {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 1rem;
     font-family: "Orbitron";
     font-weight: 500;
     letter-spacing: 2px;
@@ -392,8 +393,7 @@ button {
     width: 100%;
     gap: calc(8.66666667vw);
     top: calc(1.3vw);
-    left: calc(8.66666667vw + 4.67vw);
-
+    left: calc(8.87vw);
 }
 
 .shopping-bag {

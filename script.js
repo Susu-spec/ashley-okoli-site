@@ -16,13 +16,17 @@ var t1 = gsap.timeline({
             stagger: 0.25
       });
 
-function toggle() {
-      t1.play();
-}
+// function toggle() {
+//       t1.play();
+//       if (shoppingBag && portfolio) {
+//             shoppingBag.classList.remove("shopping-bag-active"); 
+//             portfolio.classList.remove("portfolio-active");
+//       }
+// }
 
-function toggleClose() {
-      t1.reverse();
-}
+// function toggleClose() {
+//       t1.reverse();
+// }
 
 class VerticalCarousel {
       constructor() {
@@ -194,13 +198,31 @@ class VerticalCarousel {
                         }
 
                         menuBtn.addEventListener("click", () => {
-                              if (active) {
-                                    menuBtn.classList.remove("menu-active");
+                              if (menuBtn.classList.contains("menu-active")) {
+                                    if (about) {
+                                          menuBtn.classList.remove("menu__dark--active");
+                                          menuBtn.classList.add("menu-active");
+                                          menuBtn.classList.add("menu-dark");
+                                          
+                                    }
+                                    else {
+                                          menuBtn.classList.remove("menu-active");
+                                    } 
+                                    t1.reverse();  
                               }
                               else {
-                                    menuBtn.classList.add("menu-active");
+                                    if (about) {
+                                          menuBtn.classList.remove("menu-dark--active");
+                                          menuBtn.classList.add("menu-active");
+                                          console.log('hello');
+                                    }
+                                    else {
+                                          menuBtn.classList.add("menu-active");
+                                    }
+                                    t1.play();
+                                    // t1.play();
                               }
-                        })
+                        });
                   }
                   , 0);
       }
@@ -233,26 +255,8 @@ class VerticalCarousel {
 
             console.log(line.offsetWidth);
             
-            buttons.forEach((button) => {
-                  button.addEventListener("click", () => {
-                        var linePosition = 0;
-                        var incrementAmount = 10;
-                        const buttonIndex = keys.indexOf(button);
-                        console.log(buttonIndex);
-                        const targetPosition = Math.abs(buttonIndex) * button.offsetWidth;
-                        console.log(targetPosition);
-                  if (linePosition < targetPosition) {
-                        linePosition += incrementAmount;
-                        linePosition = Math.min(linePosition, targetPosition);
-                        console.log(linePosition);
-                  } else if (linePosition > targetPosition) {
-                        linePosition -= incrementAmount;
-                        linePosition = Math.max(linePosition, targetPosition);
-                  }
-                        line.style.opacity = "1";
-                        line.style.transform = `translateX(${linePosition}px) scale(0.1342, 1)`;
-                  });
-            });
+            // buttons.forEach((button) => {
+            //       button.addEventListener("click", () => {}
             
             if (this.pages[page]) {
                   this.currentPage = page;
