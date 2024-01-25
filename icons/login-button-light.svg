@@ -5,7 +5,12 @@
 <style type="text/css">
 	.st0{fill:none;stroke:#d2d8cf;}
 </style>
-<g id="Group_109" transform="translate(-1496.109 -209.055)">
+<defs>
+    <filter id="drop-shadow" height="130%">
+        <feDropShadow dx="4" dy="4" stdDeviation="2" flood-color="#0e0e0e" />
+    </filter>
+</defs>
+<g id="Group_109" transform="translate(-1496.109 -209.055)" filter="url(#drop-shadow)">
 	<path id="Path_25" class="st0" d="M1496.6,240.1c0-7.7,6.3-14,14-14c7.7,0,14,6.3,14,14l0,0"/>
 	<ellipse id="Ellipse_2" class="st0" cx="1510.6" cy="217.8" rx="8.2" ry="8.2"/>
 </g>

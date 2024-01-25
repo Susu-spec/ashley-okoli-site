@@ -254,6 +254,7 @@ span {
 
 .menu-btn span {
     width: calc(6.67vw);
+    box-shadow: 0 1px 1px 1px #0e0e0e;
 }
 
 .menu-btn span {
@@ -265,6 +266,7 @@ span {
     position: absolute;
     top: 40%; 
     bottom: unset;
+    border-radius: 1px;
     vertical-align: middle;
     transition: .2s cubic-bezier(.4, 0, 0, 1);
     transition-property: transform, opacity;   
@@ -272,14 +274,17 @@ span {
 
 .menu-dark {
     background-color: #0e0e0e !important;
+    box-shadow: none !important;
 }
 
 .menu-dark:before {
     background-color: #0e0e0e !important;
+    box-shadow: none !important;
 }
 
 .menu-dark:after {
     background-color: #0e0e0e !important;
+    box-shadow: none !important;
 }
 
 .menu-active {
@@ -302,11 +307,12 @@ span {
     width: calc(6.25520833vw);
     height: 2px;
     display: inline-block;
-    border-radius: unset;
+    border-radius: 1px;
     top: calc(-2.3vw);
     background-color: #d2d8cf;
     opacity: 1;
     content: "";
+    box-shadow: 0 1px 1px 1px #0e0e0e;
     transition: .2s cubic-bezier(.4, 0, 0, 1);
     transition-property: transform, opacity;
 }
@@ -321,6 +327,7 @@ span {
     background-color: #d2d8cf;
     opacity: 1;
     content: "";
+    box-shadow: 0 1px 1px 1px #0e0e0e;
     transition: .2s cubic-bezier(.4, 0, 0, 1);
     transition-property: transform, opacity;
 }
@@ -388,9 +395,9 @@ span {
     background-image: url(icons/login-button-light.svg);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover;
-   
+    background-size: cover; 
 }
+
 
 .port-and-shop {
     position: relative;
@@ -415,6 +422,7 @@ span {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 .profile, .shop {
@@ -490,23 +498,16 @@ header {
     cursor: pointer;
 }
 
-
 .nav-content li {
     position: relative;
 }
 
-.nav-content li:before {
-    width: 0;
+.nav-content li:hover {
     color: #161616;
-    background-color: white;
-    overflow: hidden;
-    position: absolute;
-    content: "";
-    transition: all 1s cubic-bezier(0.84, 0, 0.09, 0.99);
-}
-
-.nav-content li:hover:before {
-    width: 100%;
+    background-color: var(--timberwolf);
+    max-width: fit-content;
+    font-weight: bold;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .line {

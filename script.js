@@ -143,7 +143,6 @@ class VerticalCarousel {
       renderPage() {
             const carouselWrapper = document.getElementById('carousel-wrapper');
             carouselWrapper.innerHTML = this.pages[this.currentPage];
-            
                   setTimeout(() => {
                         const progressBar = document.querySelector('.carousel-item .progress-bar');
                         const carouselItem = document.querySelector('.carousel-item');
@@ -197,7 +196,7 @@ class VerticalCarousel {
             const previous = carouselWrapper.querySelector('.current-page');   
             if (previous) {
                   gsap.to(previous, {
-                        transform: "translate3d(0, 0, -1000px)",
+                        transform: "translate3d(0, 0, -1300px)",
                         borderRadius: "10vmax",
                         duration: 1.2,
                         ease: "Strong.easeOut",
@@ -228,9 +227,12 @@ class VerticalCarousel {
                   if (menuBtn.classList.contains("menu-active")) {
                         
                         if (page === 'page2') {
-                              t1.reverse(); 
-                              menuBtn.classList.remove("menu-active");
-                              menuBtn.classList.add("menu-dark");   
+                               
+                              setTimeout(() => {
+                                    menuBtn.classList.remove("menu-active");
+                                    menuBtn.classList.add("menu-dark");
+                              }, 1200);
+                              t1.reverse();
                         }
                         else {  
                               menuBtn.classList.remove("menu-dark");
