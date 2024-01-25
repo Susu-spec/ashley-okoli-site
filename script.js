@@ -16,20 +16,9 @@ var t1 = gsap.timeline({
             stagger: 0.25
       });
 
-// function toggle() {
-//       t1.play();
-//       if (shoppingBag && portfolio) {
-//             shoppingBag.classList.remove("shopping-bag-active"); 
-//             portfolio.classList.remove("portfolio-active");
-//       }
-// }
-
-// function toggleClose() {
-//       t1.reverse();
-// }
-
 class VerticalCarousel {
       constructor() {
+            this.currentEventListener = null;
             this.currentPage = '';
             this.previousPage = '';
             this.newPage = '';
@@ -142,9 +131,14 @@ class VerticalCarousel {
                               </ul>   
                         </div>
                         <div class="progress-bar" id="progress-bar"></div> 
-                  </article>`           
-            };
-      }
+                  </article>`};
+                  this.divs = {
+                        'menu':
+                        `<div class="menu-btn">
+                        <span class="menu-icon"></span>
+                        </div>`
+                  };
+            }
 
       renderPage() {
             const carouselWrapper = document.getElementById('carousel-wrapper');
@@ -154,8 +148,7 @@ class VerticalCarousel {
                         const progressBar = document.querySelector('.carousel-item .progress-bar');
                         const carouselItem = document.querySelector('.carousel-item');
                         const aboutQuote = document.querySelector('.about-quote');
-                        const aboutText = document.querySelector('.about-text');
-                        
+                        const aboutText = document.querySelector('.about-text');    
                   
                         if (progressBar) {
                               carouselItem.style.position = "relative";
@@ -180,12 +173,12 @@ class VerticalCarousel {
                               }, 2500);
                               
                         }
+                        
 
                         const about = document.querySelector('.background-about');
                         const shoppingBag = document.querySelector(".shopping-bag");
                         const portfolio = document.querySelector(".portfolio");
                         const menuBtn = document.querySelector(".menu-btn span");
-                        const active = document.querySelector(".menu-active");
                         if (about) {
                               shoppingBag.classList.add("shopping-bag-active"); 
                               portfolio.classList.add("portfolio-active");
@@ -195,36 +188,8 @@ class VerticalCarousel {
                               shoppingBag.classList.remove("shopping-bag-active"); 
                               portfolio.classList.remove("portfolio-active");
                               menuBtn.classList.remove("menu-dark");
-                        }
-
-                        menuBtn.addEventListener("click", () => {
-                              if (menuBtn.classList.contains("menu-active")) {
-                                    if (about) {
-                                          menuBtn.classList.remove("menu__dark--active");
-                                          menuBtn.classList.add("menu-active");
-                                          menuBtn.classList.add("menu-dark");
-                                          
-                                    }
-                                    else {
-                                          menuBtn.classList.remove("menu-active");
-                                    } 
-                                    t1.reverse();  
-                              }
-                              else {
-                                    if (about) {
-                                          menuBtn.classList.remove("menu-dark--active");
-                                          menuBtn.classList.add("menu-active");
-                                          console.log('hello');
-                                    }
-                                    else {
-                                          menuBtn.classList.add("menu-active");
-                                    }
-                                    t1.play();
-                                    // t1.play();
-                              }
-                        });
-                  }
-                  , 0);
+                        }      
+                  }, 0);
       }
 
       setPreviousPage() {
@@ -232,9 +197,9 @@ class VerticalCarousel {
             const previous = carouselWrapper.querySelector('.current-page');   
             if (previous) {
                   gsap.to(previous, {
-                        transform: "translate3d(0, 0, -100px)",
-                        borderRadius: "2vmax",
-                        duration: .8,
+                        transform: "translate3d(0, 0, -1000px)",
+                        borderRadius: "10vmax",
+                        duration: 1.2,
                         ease: "Strong.easeOut",
                   });
             }
@@ -244,7 +209,7 @@ class VerticalCarousel {
             const keys = Object.keys(this.pages);
             const index = keys.indexOf(page);
             return index !== -1 ? index + 1 : null;
-      }
+      }          
     
       navigateTo(page) {
             var body = document.body;
@@ -252,15 +217,44 @@ class VerticalCarousel {
             console.log(buttons);
             const keys = Object.keys(buttons);
             const line = document.querySelector(".line");
-
             console.log(line.offsetWidth);
             
-            // buttons.forEach((button) => {
-            //       button.addEventListener("click", () => {}
-            
+            document.querySelector(".touch").innerHTML = this.divs[`menu`];
+
+            this.currentEventListener = function () {
+                  const menuBtn = document.querySelector(".menu-btn span");
+                  console.log('menuBtn classes:', menuBtn.classList);
+                  console.log('Current page:', page);   
+                  if (menuBtn.classList.contains("menu-active")) {
+                        
+                        if (page === 'page2') {
+                              t1.reverse(); 
+                              menuBtn.classList.remove("menu-active");
+                              menuBtn.classList.add("menu-dark");   
+                        }
+                        else {  
+                              menuBtn.classList.remove("menu-dark");
+                              t1.reverse();
+                        }    
+                        menuBtn.classList.remove("menu-active"); 
+                              
+                  }
+                  else {
+                        t1.play();
+                        menuBtn.classList.remove("menu-dark");
+                        menuBtn.classList.add("menu-active");      
+                  }
+            }
+ 
+            if (this.currentEventListener !== null) {
+                  const menuContainer = document.querySelector(".menu-btn");
+                  menuContainer.addEventListener("click", this.currentEventListener);      
+            } 
+
             if (this.pages[page]) {
                   this.currentPage = page;
                   this.renderPage();
+                  
                   if (page === 'page3') {
                         body.classList.add("scroll");
                   }
@@ -269,13 +263,12 @@ class VerticalCarousel {
                   }
                   const currentPageElement = document.getElementById(this.currentPage);
                   gsap.fromTo(currentPageElement, {
-                  // transform: "scaleY(.8)",
                   transform: "translateY(70%)",
                   transformOrigin: "bottom"
                   }, {
                         transform: "translate3d(0, 0, 0)",
                         transform: "scale(1)",
-                        duration: .6,
+                        duration: .8,
                         ease: "ease.OutBack",  /**Strong.easeOut */
                         onComplete: () => {
                               currentPageElement.classList.add('current-page');                              
@@ -309,98 +302,15 @@ setTimeout(() => {
 navigateTo = function(page) {
       const verticalCarousel = new VerticalCarousel();
       verticalCarousel.setPreviousPage();
+      t1.reverse();
       setTimeout(() => {
             verticalCarousel.navigateTo(page);
-      }, 500);
-
+      }, 1000);
+ 
       const buttons = document.querySelectorAll('.menu-flex button');
       for (var i = 0; i < buttons.length; i++) {
             console.log(buttons[i].offsetWidth);
       }     
 }
 
-
-/**
- * Add menu item dash
- * Translate along the x axis and as content loads
- * scale along x-axis and scale shortly on y-axis
- **/
-
-/**
- * Set right cell to have background and image to fade out
- */
-
-/**
- * Tap on button to remove div and add the button 
- * element's div name
- */
-
- // const keys = Object.keys(this.pages);
-                  // const pageIndex = this.findIndexOf(this.currentPage);
-                  // const key = keys[pageIndex - 2];
-                  // carouselWrapper.innerHTML += this.pages[key];
-
-
- // scroll() {
-      //       // const carouselWrapper = document.getElementById('carousel-wrapper');
-      //       // document.addEventListener("DOMContentLoaded", function() {
-      //             // if (this.pages['page3']) {
-                        
-      //             // }
-      //       // }); 
-      // }
-
-      // setLine(page) {
-      //   const pageIndex = this.findIndexOf(page);
-      //       const np = pageIndex / (buttons.length - 1);
-      //       const sum = 0;
-      //       console.log(sum);
-      //       var buttonTotal = 0;
-      //       buttons.forEach((button => {
-      //                  buttonTotal += button.getBoundingClientRect().x;
-      //                  console.log(buttonTotal);
-      //             })
-      //             );
-      //       const average = (sum + buttonTotal) / buttons.length;
-      //       console.log(average);
-
-      //       const clicked = buttons[pageIndex].getBoundingClientRect().x;
-      //       console.log(clicked);
-      //       const translationValue = `${clicked - average}px`;
-      //       console.log(translationValue);
-   //      line.style.transform = `translateX(${translationValue}) scale(0.1342, 1)`;
-      // }
-
-
-
-            /**
-             * Translate span elements across y-axis
-             * 
-             * remove about-quote
-             * add and translate about across y-axis
-             */
-
-//     /**
-//        * Object.keys(this.page).forEach((page) => {
-//                   const newPage = document.createElement('article');
-//                   newPage.className = `carousel-item ${page === this.currentPage ? 'active' : ''}`;
-//                   newPage.innerHTML = this.pages[page];
-//                   carouselWrapper.appendChild(newPage);
-//             });
-//
-     
-
-/**setTimeout(function () {
-      preview.style.display = "none";
-}, 5000);
-**/
-
-/**
- * header is always present
- * preview will show up until you tap on any button
- * if you tap on another button, the page associated with the button
- * will show up and previous page will scale down and blur and new
- * page will have a transition attached to it where it slowly increases in height
- * 
- */
 

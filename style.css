@@ -120,6 +120,10 @@ button {
 	outline: inherit;
 }
 
+span {
+    user-select: none;
+}
+
 
 .scroll {
     overflow: scroll;
@@ -163,13 +167,13 @@ button {
 }
 
 .preview-text {
-    height: calc(6vw);
+    height: 8vw;
     overflow: hidden;
 }
 
 .preview-page h1 {
     animation-name: loader_animation;
-    animation-duration: 1.5s;
+    animation-duration: 1.8s;
     animation-iteration-count: infinite;
 }
 
@@ -237,6 +241,7 @@ button {
 }
 
 .menu-btn {
+    user-select: none ;
     cursor: pointer;
     display: inline-block;
     position: relative;
@@ -258,7 +263,7 @@ button {
     background-color: #d2d8cf;
     transition: .2s cubic-bezier(.4, 0, 0, 1);
     position: absolute;
-    top: 30%; 
+    top: 40%; 
     bottom: unset;
     vertical-align: middle;
     transition: .2s cubic-bezier(.4, 0, 0, 1);
@@ -277,17 +282,17 @@ button {
     background-color: #0e0e0e !important;
 }
 
-.menu-active, .menu__dark--active {
+.menu-active {
     transform: rotate(45deg) translateY(-50%) !important;
     width: calc(6vw) !important;
     z-index: 3000;
 }
 
-.menu-active::before, .menu__dark--active {
+.menu-active::before {
     transform: rotate(90deg) translate(calc(2.3vw), 0) !important;
 }
 
-.menu-active::after, .menu__dark--active {
+.menu-active::after {
     transform: rotate(-45deg) translate(calc(1.87vw), calc(-1.87vw)) !important;
     opacity: 0 !important;
 }
@@ -685,13 +690,13 @@ header {
 
 @keyframes loader_animation {
     from {
-        transform: translateY(-8vw);
+        transform: translateY(-12vw);
         opacity: 1;
 
     }
     to {
         opacity: .9;
-        transform: translateY(6vw);
+        transform: translateY(5vw);
     }
 }
 
@@ -786,7 +791,6 @@ header {
 
   .Profile, .shop {
     width: 0px;
-
   }
 
   .Profile span:hover , .shop span:hover {
