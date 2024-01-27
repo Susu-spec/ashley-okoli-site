@@ -103,6 +103,10 @@ table, tr, td {
    background: transparent;
 }
 
+article {
+    overflow: hidden;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -219,7 +223,8 @@ span {
     width: 100%;
     height: 100%;
     min-height: 100vh;
-    perspective: 1000px;    
+    perspective: 1000px;
+    overflow: hidden;  
 }
 
 .carousel-item {
@@ -492,6 +497,7 @@ header {
 
 .menu-flex li {
     font-size: .9rem;
+    font-family: 'Orbitron';
     font-weight: 900;
     opacity: 1;
     padding: 2px 1.125rem 2px 1.125rem;
@@ -573,7 +579,6 @@ header {
     animation-name: fade_in_up;
     animation-duration: 1.25s;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-    animation-delay: 0;
     animation-fill-mode: forwards;
 }
 
@@ -619,17 +624,27 @@ header {
 }
 
 .progress-bar {
-    position: fixed;
-    top: 8rem;
+    position: absolute;
+    margin-top: 9rem;
+    margin-bottom: 12.5rem;
     left: 85%;
+    height: 10%;
     content: "";
     background: rgba(255, 255, 255, 0.4);
-    width: 1px;
+    width: 2px;
+    border-radius: 1vmax;
     z-index: 1000;
 }
 
+.oscillate {
+    animation-name: oscillate-animation;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    transform-origin: top center;
+}
+
 .navigation-wrapper ul {
-    margin-top: 5rem;
+    margin-top: 9rem;
     margin-left: 3.75rem;
     margin-bottom: 12.5rem;
     list-style: none;
@@ -675,6 +690,17 @@ header {
 
 .navigation-link {
     margin-bottom: 5rem;
+}
+
+@keyframes oscillate-animation {
+    from {
+        transform: scaleY(.5);
+        
+    }
+
+    to {
+        transform: scaleY(.2);
+    }
 }
 
 @keyframes scale-animation {
@@ -953,7 +979,7 @@ header {
     }
 
     .progress-bar {
-        top: 22rem;
+        margin-top: 22rem;
     }
 
     .navigation-link {

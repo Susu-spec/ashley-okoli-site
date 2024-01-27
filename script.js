@@ -1,3 +1,4 @@
+gsap.registerPlugin(ScrollTrigger);
 var t1 = gsap.timeline({
             paused: "true"
       });
@@ -15,6 +16,16 @@ var t1 = gsap.timeline({
             y: "0%",
             stagger: 0.25
       });
+
+var t2 = gsap.timeline({
+            paused: "true"
+      });
+      t2.to(".campaign", {
+            duration: 1,
+            x: "0%",
+            ease: Expo.easeInOut
+      });
+
 
 class VerticalCarousel {
       constructor() {
@@ -128,10 +139,14 @@ class VerticalCarousel {
                                                 <span data-text="culted">culted</span>
                                           </a>
                                     </li>
-                              </ul>   
+                                    
+                              </ul>  
+                                
                         </div>
-                        <div class="progress-bar" id="progress-bar"></div> 
-                  </article>`};
+                        <div class="progress-bar oscillate" id="progress-bar"></div>
+                         
+                  </article>
+                   `};
                   this.divs = {
                         'menu':
                         `<div class="menu-btn">
@@ -144,24 +159,53 @@ class VerticalCarousel {
             const carouselWrapper = document.getElementById('carousel-wrapper');
             carouselWrapper.innerHTML = this.pages[this.currentPage];
                   setTimeout(() => {
-                        const progressBar = document.querySelector('.carousel-item .progress-bar');
+                        const progressBar = document.querySelector('.progress-bar');
                         const carouselItem = document.querySelector('.carousel-item');
                         const aboutQuote = document.querySelector('.about-quote');
-                        const aboutText = document.querySelector('.about-text');    
-                  
+                        const aboutText = document.querySelector('.about-text');  
+                        
+
+                        const wh = carouselItem.clientHeight,
+                              dh = Math.max(carouselItem.scrollHeight);
+
                         if (progressBar) {
                               carouselItem.style.position = "relative";
+                              
                               carouselItem.addEventListener("scroll", function() {
-                                    var scrollPos = carouselItem.scrollTop,
-                                          dh = Math.max(carouselItem.scrollHeight, carouselItem.scrollHeight, window.scrollHeight, window.offsetHeight, window.clientHeight),
-                                          wh = window.innerHeight,
-                                          scrollHeight = ((scrollPos - dh) / 4) * 100 ,
-                                          scrollPercent = dh > wh ? (scrollPos / (dh-wh) ) * 100: (scrollPos / (wh-dh)) * 100;
-                                          
-                                          scrollPercent = Math.max(scrollPercent, scrollHeight);
-     
-                                          progressBar.style.height = `${scrollPercent}%`;
+                                    const compStyle = window.getComputedStyle(progressBar);
+                                    const height = parseFloat(compStyle.height) || 0;
+                              
+                                    if (height === 0) {
+                                          progressBar.style.height = `30px`;
+                                          console.log(progressBar.style.height);
+                                          progressBar.classList.add("oscillate");
+                                          console.log(height);
+                                    }
+                                    else {
+                                          progressBar.classList.remove("oscillate");
+                                    }
+                                    
+                                    var scrollPos = carouselItem.scrollTop,               
+                                          scrollPercent = ((scrollPos / (dh - wh))),
+                                          scrollTotal = (scrollPercent * dh),
+                                          computedStyle = window.getComputedStyle(progressBar),
+                                          marginBottom = parseFloat(computedStyle.marginBottom);
+                                    
+                                    scrollTotal = Math.min(scrollTotal, dh);
+                                    const noBottom = (dh - (marginBottom));
+                                    if (scrollTotal > noBottom) {
+                                          progressBar.style.height = `${scrollTotal - (marginBottom)}px`;
+                                          return;
+                                    }
+                                    progressBar.style.height = `${scrollTotal}px`;
+                                    
                               });
+                              // const computedStyle = window.getComputedStyle(progressBar),
+                              //       height = parseFloat(computedStyle.height);
+                              // console.log(height);
+                              
+                              
+                              
                         }
 
                         if (aboutQuote) {
@@ -170,9 +214,7 @@ class VerticalCarousel {
                                     aboutText.classList.add('fade-in');
                                     this.removeDiv(aboutQuote);
                               }, 2500);
-                              
                         }
-                        
 
                         const about = document.querySelector('.background-about');
                         const shoppingBag = document.querySelector(".shopping-bag");
@@ -187,7 +229,8 @@ class VerticalCarousel {
                               shoppingBag.classList.remove("shopping-bag-active"); 
                               portfolio.classList.remove("portfolio-active");
                               menuBtn.classList.remove("menu-dark");
-                        }      
+                        }
+                        
                   }, 0);
       }
 
@@ -221,13 +264,9 @@ class VerticalCarousel {
             document.querySelector(".touch").innerHTML = this.divs[`menu`];
 
             this.currentEventListener = function () {
-                  const menuBtn = document.querySelector(".menu-btn span");
-                  console.log('menuBtn classes:', menuBtn.classList);
-                  console.log('Current page:', page);   
+                  const menuBtn = document.querySelector(".menu-btn span");  
                   if (menuBtn.classList.contains("menu-active")) {
-                        
-                        if (page === 'page2') {
-                               
+                        if (page === 'page2') {       
                               setTimeout(() => {
                                     menuBtn.classList.remove("menu-active");
                                     menuBtn.classList.add("menu-dark");
@@ -292,7 +331,7 @@ class VerticalCarousel {
 const verticalCarousel = new VerticalCarousel();
 const preview = document.querySelector(".preview");
 const header = document.querySelector(".header");
-if(preview) {
+if (preview) {
       verticalCarousel.removeDiv(header);
 } 
 setTimeout(() => {
