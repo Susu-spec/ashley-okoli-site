@@ -175,15 +175,15 @@ class VerticalCarousel {
                                     const compStyle = window.getComputedStyle(progressBar);
                                     const height = parseFloat(compStyle.height) || 0;
                               
-                                    if (height === 0) {
-                                          progressBar.style.height = `30px`;
-                                          console.log(progressBar.style.height);
-                                          progressBar.classList.add("oscillate");
-                                          console.log(height);
-                                    }
-                                    else {
-                                          progressBar.classList.remove("oscillate");
-                                    }
+                                    // if (height === 0) {
+                                    //       progressBar.style.height = `30px`;
+                                    //       console.log(progressBar.style.height);
+                                    //       progressBar.classList.add("oscillate");
+                                    //       console.log(height);
+                                    // }
+                                    // else {
+                                    //       progressBar.classList.remove("oscillate");
+                                    // }
                                     
                                     var scrollPos = carouselItem.scrollTop,               
                                           scrollPercent = ((scrollPos / (dh - wh))),
