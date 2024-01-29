@@ -13,27 +13,26 @@
     <link href="fonts/sprat-type-master/Sprat-type-master/Sprat-CondesedRegular.otf" rel="preload" as="font" type="font/otf" crossorigin="anonymous"> 
     <title>Ashley Okoli</title>
 </head>
-<header class="header" >
-    <nav>
-        <div class="touch">
-        </div>
-            <div class="row">
-                <div class="menu">   
-                    <ul class="ul">
-                        <span class="menu-text">menu</span>
-                        <li class="li"><a href="#">Campaigns</a></li>
-                        <li class="li"><a href="#">Runway</a></li>
-                        <li class="li"><a href="#">Archive</a></li>
-                        <li class="li"><a href="#">Styling + Design</a></li>
-                    </ul>
-                </div>
+<header role="banner">
+    <nav role="navigation" aria-label="Secondary Navigation">
+        <div class="touch"></div>
+        <div class="row">
+            <div class="menu">
+                <ul class="ul" aria-label="Main Menu">
+                    <span class="menu-text">menu</span>
+                    <li class="li"><a href="#">Campaigns</a></li>
+                    <li class="li"><a href="#">Runway</a></li>
+                    <li class="li"><a href="#">Archive</a></li>
+                    <li class="li"><a href="#">Styling + Design</a></li>
+                </ul>
             </div>
-        <div class="port-and-shop">
-            <div class="portfolio"><div class="Profile"><span data-text="Profile"></span></div></div>
-            <div class="shopping-bag"><div class="Shop"><span data-text="Shop"></span></div>
         </div>
-        <div class="logo">
-              <div class="ashley-logo"></div>
+        <div class="port-and-shop">
+            <div class="portfolio" aria-label="Profile"><div class="Profile"><span data-text="Profile"></span></div></div>
+            <div class="shopping-bag" aria-label="Shop"><div class="Shop"><span data-text="Shop"></span></div></div>
+        </div>
+        <div class="logo" aria-label="Ashley Okoli Logo">
+            <div class="ashley-logo"></div>
         </div> 
     </nav>
     <div class="nav-content">
@@ -43,31 +42,30 @@
             <li><span>Archive</span></li>
             <li><span>Styling + Design</span></li>
         </ul>
-
     </div>
-    <div class="switch-menu">
+    <nav role="navigation" aria-label="Secondary Navigation" class="switch-menu">
         <div class="menu-content">
             <ul class="menu-flex">
-                <button onclick="navigateTo('page1');"><li>Home</li></button>
-                <button onclick="navigateTo('page2');"><li>About</li></button>
-                <button onclick="navigateTo('page3');"><li>Press</li></button>
+                <li><button onclick="navigateTo('page1');" role="menuitem">Home</button></li>
+                <li><button onclick="navigateTo('page2');" role="menuitem">About</button></li>
+                <li><button onclick="navigateTo('page3');" role="menuitem">Press</button></li>
             </ul>
             <div class="line"></div>
         </div>
-    </div> 
+    </nav>
 </header>
-<body>
-    <main>
-        <section class="preview">
-            <div class="preview-page">
-                <div class="preview-text">
-                    <h1>ASHLEY OKOLI</h1>                   
-                </div>
+
+<main>
+    <section class="preview">
+        <div class="preview-page">
+            <div class="preview-text">
+                <h1>ASHLEY OKOLI</h1>
             </div>
-        </section>
-        <section id="carousel-wrapper"></section> 
-        <section class="campaign"></section>
-    </main>
+        </div>
+    </section>
+    <section id="carousel-wrapper" aria-label="Image Carousel"></section> 
+    <section class="campaign" aria-label="Campaign Section"></section>
+</main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js></script>
     <script src="script.js"></script>
