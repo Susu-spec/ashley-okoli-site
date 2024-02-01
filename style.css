@@ -55,6 +55,9 @@
     --wenge: hsla(6, 9%, 44%, 1);
     --licorice-2: hsla(0, 23%, 12%, 1);
     --timberwolf: hsla(100, 10%, 83%, 1); 
+
+    --slide-up-y: -12vw;
+    --slide-down-y: 5vw;
 }
 
 
@@ -86,8 +89,14 @@ header {
     background: transparent;
 }
 
+header {
+    position: fixed;
+    z-index: 1000;
+}
+
 
 nav {
+    position: relative;
     width: 90%;
     margin: 0 auto;
     background: transparent;
@@ -452,14 +461,11 @@ span {
 .portfolio-active {
     background-image: url(icons/login-button-black.svg);
 }
-.logo {
-    position: absolute;
-    right: 15%;
-}
 
-header {
-    position: fixed;
-    z-index: 1000;
+.logo {
+    position: relative;
+    right: 0;
+    top: calc(1.3vw);
 }
 
 .switch-menu {
@@ -478,8 +484,12 @@ header {
     clip-path: inset(0 0 0 0 round 12px);
     background: rgba(29, 27, 27, 0.4);
     backdrop-filter: blur(.5rem);
-    animation: width_animation 1s cubic-bezier(0.19, 1, 0.22, 1);
+    
     position: relative;
+}
+
+.scale-x {
+    animation: width_animation 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .menu-flex {
@@ -517,13 +527,13 @@ header {
 }
 
 .line {
-    width: 100%;
+    /* width: 100%; */
     position: absolute;
     bottom: 25%;
     height: 3px;
     background-color:  rgba(244, 240, 240, 1);
-    transform: translate(0px, 0px) scale(0.1342, 1);
-    opacity: 0;
+    /* transform: translate(0px, 0px) scale(0.1342, 1); */
+    /* opacity: 0; */
 }
 
 .background-about {
@@ -717,13 +727,13 @@ header {
 
 @keyframes loader_animation {
     from {
-        transform: translateY(-12vw);
+        transform: translateY(var(--slide-up-y));
         opacity: 1;
 
     }
     to {
         opacity: .9;
-        transform: translateY(5vw);
+        transform: translateY(var(--slide-down-y));
     }
 }
 
@@ -761,6 +771,15 @@ header {
 }
 
 @media only screen and (min-width: 43.75rem) {
+    :root {
+        --slide-up-y: -4vw;
+        --slide-down-y: 3vw;
+    }
+
+    .preview-text {
+        height: 3vw;
+    }
+
     nav {
         padding: unset;
         width: 100%;

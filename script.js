@@ -151,7 +151,8 @@ class VerticalCarousel {
                         'menu':
                         `<div class="menu-btn">
                         <span class="menu-icon"></span>
-                        </div>`
+                        </div>`,
+                        'line': `<div class="line scale-x"></div>`
                   };
             }
 
@@ -198,14 +199,7 @@ class VerticalCarousel {
                                           return;
                                     }
                                     progressBar.style.height = `${scrollTotal}px`;
-                                    
-                              });
-                              // const computedStyle = window.getComputedStyle(progressBar),
-                              //       height = parseFloat(computedStyle.height);
-                              // console.log(height);
-                              
-                              
-                              
+                              });     
                         }
 
                         if (aboutQuote) {
@@ -255,14 +249,8 @@ class VerticalCarousel {
     
       navigateTo(page) {
             var body = document.body;
-            const buttons = document.querySelectorAll('.menu-flex button');
-            console.log(buttons);
-            const keys = Object.keys(buttons);
-            const line = document.querySelector(".line");
-            console.log(line.offsetWidth);
-            
             document.querySelector(".touch").innerHTML = this.divs[`menu`];
-
+            this.appendLine();
             this.currentEventListener = function () {
                   const menuBtn = document.querySelector(".menu-btn span");  
                   if (menuBtn.classList.contains("menu-active")) {
@@ -325,6 +313,37 @@ class VerticalCarousel {
       addDiv(element) {
             element.style.display = "block";
       }
+
+      appendLine () {
+            let lineCreate = document.createElement("div");
+            lineCreate.classList.add("line", "scale-x");
+                  const buttons = document.querySelectorAll('.menu-flex button');
+                  const lists = document.querySelectorAll(".menu-flex li");
+            lists.forEach((list) => {
+                  list.addEventListener("click", (event) => {
+                  //       const home = document.getElementById("#home");
+                  // if (home) {
+                  //       const line = clickedList.querySelector(".line");
+
+                  //       this.removeDiv(line);
+                  // }
+                        
+                        const clickedList = event.currentTarget;
+                        const line = clickedList.querySelector(".line");
+
+                        if (!line) {
+                              clickedList.appendChild(lineCreate);
+                              console.log("No line");
+                              const line = clickedList.querySelector(".line");
+                              buttons.forEach((button) => {
+                                    console.log("Button clicked");
+                                    line.style.opacity = "1";
+                                    line.style.width = `${button.offsetWidth}px`;
+                              });      
+                        } 
+                  });
+            });
+      }
 }
 
 
@@ -338,6 +357,7 @@ setTimeout(() => {
       verticalCarousel.navigateTo('page1');
       verticalCarousel.removeDiv(preview);
       verticalCarousel.addDiv(header);
+      // verticalCarousel.appendFirstLine();
 }, 5000);
 
 navigateTo = function(page) {
@@ -346,12 +366,7 @@ navigateTo = function(page) {
       t1.reverse();
       setTimeout(() => {
             verticalCarousel.navigateTo(page);
-      }, 1000);
- 
-      const buttons = document.querySelectorAll('.menu-flex button');
-      for (var i = 0; i < buttons.length; i++) {
-            console.log(buttons[i].offsetWidth);
-      }     
+      }, 1000);        
 }
 
 

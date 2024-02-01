@@ -43,14 +43,13 @@
             <li><span>Styling + Design</span></li>
         </ul>
     </div>
-    <nav role="navigation" aria-label="Secondary Navigation" class="switch-menu">
-        <div class="menu-content">
+    <nav role="navigation" aria-label="Primary Navigation" class="switch-menu">
+        <div class="menu-content scale-x">
             <ul class="menu-flex">
-                <li><button onclick="navigateTo('page1');" role="menuitem">Home</button></li>
+                <li id="home"><button onclick="navigateTo('page1');" role="menuitem" id="homeButton">Home</button></li>
                 <li><button onclick="navigateTo('page2');" role="menuitem">About</button></li>
                 <li><button onclick="navigateTo('page3');" role="menuitem">Press</button></li>
             </ul>
-            <div class="line"></div>
         </div>
     </nav>
 </header>
