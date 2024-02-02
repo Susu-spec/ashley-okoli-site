@@ -96,7 +96,7 @@ header {
 
 
 nav {
-    position: relative;
+    /* position: relative; */
     width: 90%;
     margin: 0 auto;
     background: transparent;
@@ -463,9 +463,9 @@ span {
 }
 
 .logo {
-    position: relative;
-    right: 0;
-    top: calc(1.3vw);
+    position: absolute;
+    right: calc(6.67vw);
+    top: calc(4.67vw);
 }
 
 .switch-menu {
