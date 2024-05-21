@@ -11,4 +11,4 @@ A redesign and development of Ashley Okoli site created with Vanilla JS, [GSAP](
 - Addition of pages.
 
 ## General Notes
-> I made this site because I wanted to create more complicated sites that focused on animations. I used Vanilla Javascript for this right before I began using non UI libraries for my subsequent projects. I didn't finish the site because I wanted to move on to sites that focused on functionality and used libraries to implement that.
+> I made this site because I wanted to create more complicated sites that focused on animations. I didn't finish the site because I wanted to move on to sites that focused on functionality and used libraries to implement that.
